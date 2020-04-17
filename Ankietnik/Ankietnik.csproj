@@ -75,7 +75,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="DataAccessor.cs" />
     <Compile Include="DataModels.cs" />
-    <Compile Include="EncryptionService.cs" />
+    <Compile Include="CryptoService.cs" />
     <Compile Include="AccountService.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
