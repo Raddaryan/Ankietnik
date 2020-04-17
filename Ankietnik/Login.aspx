@@ -14,22 +14,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container-sm">
-        <h2>Ankietnik</h2>
-        <br />
-        <form id="form1" runat="server">
-            <div>
-                <div class="form-group">
-                    <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
-                    <asp:TextBox ID="Username" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-                    <asp:TextBox ID="Password" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
-                </div>
-                <asp:Button ID="LogInButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zaloguj" />
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h2>Ankietnik</h2>
+                <br />
+            <div class="container px-3 py-3" style="background-color:whitesmoke;">
+                <form id="form1" runat="server">
+                    <div>
+                        <div class="form-group">
+                            <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
+                            <asp:TextBox ID="Username" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+                            <asp:TextBox ID="Password" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                        </div>
+                        <asp:Button ID="LogInButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zaloguj" />
+                        <br />
+                        <p class="text-center">
+                            <asp:Label ID="Label3" runat="server" Text="Nie masz konta? "></asp:Label>
+                            <asp:HyperLink ID="Register" runat="server">Zarejestruj się</asp:HyperLink>
+                        </p>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+        <div class="col-sm-4"></div>
     </div>
 </body>
 </html>
