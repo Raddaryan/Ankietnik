@@ -17,7 +17,7 @@ namespace Ankietnik
         internal string Message;
     }
 
-    internal struct User
+    internal class User
     {
         internal string Username;
         internal EncryptedPassword Password;
