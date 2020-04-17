@@ -15,11 +15,11 @@
 </head>
 <body>
     <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 py-3">
             <h2>Ankietnik</h2>
                 <br />
-            <div class="container px-3 py-3" style="background-color:whitesmoke;">
+            <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
                 <form id="form1" runat="server">
                     <div>
                         <div class="form-group">
@@ -40,7 +40,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-sm-4"></div>
+        <div class="col-md-4"></div>
     </div>
 </body>
 </html>
