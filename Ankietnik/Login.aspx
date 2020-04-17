@@ -14,18 +14,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <div class="form-group">
-                <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
-                <asp:TextBox ID="Username" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
+    <div class="container-sm">
+        <h2>Ankietnik</h2>
+        <br />
+        <form id="form1" runat="server">
+            <div>
+                <div class="form-group">
+                    <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
+                    <asp:TextBox ID="Username" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+                    <asp:TextBox ID="Password" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                </div>
+                <asp:Button ID="LogInButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zaloguj" />
             </div>
-            <div class="form-group">
-                <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-                <asp:TextBox ID="Password" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
-            </div>
-            <asp:Button ID="LogInButton" CssClass="btn btn-primary" runat="server" Text="Zaloguj" />
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
 </html>
