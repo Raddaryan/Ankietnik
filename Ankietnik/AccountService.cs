@@ -19,7 +19,7 @@ namespace Ankietnik
 
         internal static User GetUser(string userName)
         {
-            var sb
+            var queryBuilder = 
         }
         
     }

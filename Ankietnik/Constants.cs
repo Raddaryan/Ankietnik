@@ -8,6 +8,7 @@ namespace Ankietnik
     internal static class Constants
     {
         internal const int DEFAULT_SALT_SIZE = 20;
+        internal const char LIST_SEPARATOR = ',';
 
         // database constants
         internal const string CONN_STRING = "temp_conn_string";
