@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Text;
 
 namespace Ankietnik
 {
@@ -9,17 +6,19 @@ namespace Ankietnik
     {
         internal static OperationResult Login(string userName, string password)
         {
-
+            return new OperationResult();
         }
 
         internal static OperationResult Register(string userName, string password)        
         {
-
+            return new OperationResult();
         }
 
         internal static User GetUser(string userName)
         {
-            var queryBuilder = 
+            var queryBuilder = new StringBuilder();
+
+            return new User();
         }
         
     }
