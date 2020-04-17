@@ -6,11 +6,17 @@ namespace Ankietnik
     internal class DataAccessor
     {
         private SqlConnection _conn;
-        private DataAccessor _instance;
+        private static DataAccessor _instance;
         
-        internal DataAccessor Instance
+        internal static DataAccessor Instance
         {
-            get => _instance ?? new DataAccessor();
+            get
+            {
+                if (_instance != null)
+                    return _instance;
+
+                return _instance = new DataAccessor();
+            }
         }
 
         internal SqlConnection Conn

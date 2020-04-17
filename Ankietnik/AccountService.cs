@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Ankietnik
 {
@@ -6,20 +8,108 @@ namespace Ankietnik
     {
         internal static OperationResult Login(string userName, string password)
         {
-            return new OperationResult();
+            var result = new OperationResult();
+            var user = GetUser(userName);
+
+            if (user == null)
+            {
+                result.Status = OperationStatus.Failed;
+                result.Message = Constants.UserNotFoundMsg;
+            } 
+            else
+            {
+                if (CryptoService.VerifyPassword(password, user.Password))
+                {
+                    result.Status = OperationStatus.Success;
+                }
+                else
+                {
+                    result.Status = OperationStatus.Failed;
+                    result.Message = Constants.IncorrectCredentialsMsg;
+                }
+            }
+
+            return result;
         }
 
-        internal static OperationResult Register(string userName, string password)        
+        internal static bool ComparePassword(string password, string retyped) => password == retyped;
+
+        internal static OperationResult Register(string userName, string password, string retyped, int group)        
         {
-            return new OperationResult();
+            var result = new OperationResult();
+            var user = GetUser(userName);
+
+            if (user != null)
+            {
+                result.Status = OperationStatus.Failed;
+                result.Message = Constants.UserAlreadyExistsMsg;
+            } 
+            else 
+            {
+                var queryBuilder = new StringBuilder();
+                var encryptedPassword = CryptoService.EncryptPassword(password);
+                queryBuilder.Append(
+                    $"{SQL.Insert}{Constants.USERS_TABLE_NAME} ({SQL.UserFieldList}) {SQL.Values} (" +
+                    SQL.FieldList(new List<string>() {
+                        userName,
+                        encryptedPassword.Salt.ToString(),
+                        encryptedPassword.Key.ToString(),
+                        Constants.Roles[Constants.Role.User].ToString()
+                    }) 
+                );
+
+                try
+                {
+                    var dataAccessor = DataAccessor.Instance;
+                    dataAccessor.ExecuteSqlQuery(queryBuilder.ToString());
+                    result.Status = OperationStatus.Success;
+                } 
+                catch (Exception ex)
+                {
+                    result.Status = OperationStatus.Failed;
+                    result.Message = ex.Message;
+                    return result;
+                }
+            }
+
+            return result;
         }
 
         internal static User GetUser(string userName)
         {
             var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                SQL.Select + SQL.UserFieldList +
+                $"{SQL.From} {Constants.USERS_TABLE_NAME} {SQL.Where} " +
+                SQL.SingleCriteria(new SQL.LogicComparison() { 
+                    LeftOperand = Constants.USERS_USERNAME_FIELD,
+                    RightOperand = userName,
+                    Operator = SQL.LogicOperator.Equal
+                })
+            );
 
-            return new User();
+            var dataAccessor = DataAccessor.Instance;
+            var userDataTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+            var userData = userDataTable?.Rows.Count > 0 ? userDataTable.Rows[0] : null;
+
+            if (userData == null)
+            {
+                return null;
+            } 
+            else
+            {
+                return new User()
+                {
+                    Username = userData[Constants.USERS_USERNAME_FIELD].ToString(),
+                    Password = new EncryptedPassword()
+                    {
+                        Salt = Encoding.ASCII.GetBytes(userData[Constants.USERS_SALT_FIELD].ToString()),
+                        Key = Encoding.ASCII.GetBytes(userData[Constants.USERS_KEY_FIELD].ToString())
+                    },
+                    Role = int.Parse(userData[Constants.USERS_ROLE_FIELD].ToString()),
+                    Group = int.Parse(userData[Constants.USERS_GROUP_FIELD].ToString())
+                };
+            }
         }
-        
     }
 }
