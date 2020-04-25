@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Ankietnik.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Ankietnik.Register" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Login</title>
+    <title>Register</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
@@ -24,19 +24,25 @@
                     <div>
                         <div class="form-group">
                             <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
-                            <asp:TextBox ID="UsernameTextBox" CssClass="form-control" runat="server" TextMode="Email" ValidateRequestMode="Enabled"></asp:TextBox>
-                            <asp:RequiredFieldValidator runat="server" id="reqUsername" controltovalidate="UsernameTextBox" errormessage="Wpisz swój adres email" forecolor="Red" Font-Size="10" />
+                            <asp:TextBox ID="Username" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-                            <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
-                            <asp:RequiredFieldValidator runat="server" id="reqPassword" controltovalidate="PasswordTextBox" errormessage="Wpisz swoje hasło" forecolor="Red" Font-Size="10" />
+                            <asp:TextBox ID="Password" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
                         </div>
-                        <asp:Button ID="LogInButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zaloguj" OnClick="LogInButton_Click" ValidateRequestMode="Enabled" />
+                        <div class="form-group">
+                            <asp:Label ID="Label4" runat="server" Text="Powtórz hasło: "></asp:Label>
+                            <asp:TextBox ID="Retyped" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label ID="Label5" runat="server" Text="Grupa: "></asp:Label>
+                            <asp:TextBox ID="Group" CssClass="form-control" runat="server" TextMode="Search"></asp:TextBox>
+                        </div>
+                        <asp:Button ID="LogInButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zaloguj" />
                         <br />
                         <p class="text-center">
-                            <asp:Label ID="Label3" runat="server" Text="Nie masz konta? "></asp:Label>
-                            <asp:HyperLink ID="RegisterLink" NavigateUrl="Register.aspx" runat="server">Zarejestruj się!</asp:HyperLink>
+                            <asp:Label ID="Label3" runat="server" Text="Masz już konto? "></asp:Label>
+                            <asp:HyperLink ID="Login" NavigateUrl="Login.aspx" runat="server">Zaloguj się!</asp:HyperLink>
                         </p>
                     </div>
                 </form>

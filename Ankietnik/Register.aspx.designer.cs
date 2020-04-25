@@ -10,7 +10,7 @@
 namespace Ankietnik {
     
     
-    public partial class Login {
+    public partial class Register {
         
         /// <summary>
         /// Kontrolka form1.
@@ -31,22 +31,13 @@ namespace Ankietnik {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Kontrolka UsernameTextBox.
+        /// Kontrolka Username.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsernameTextBox;
-        
-        /// <summary>
-        /// Kontrolka reqUsername.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqUsername;
+        protected global::System.Web.UI.WebControls.TextBox Username;
         
         /// <summary>
         /// Kontrolka Label2.
@@ -58,22 +49,49 @@ namespace Ankietnik {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Kontrolka PasswordTextBox.
+        /// Kontrolka Password.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+        protected global::System.Web.UI.WebControls.TextBox Password;
         
         /// <summary>
-        /// Kontrolka reqPassword.
+        /// Kontrolka Label4.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqPassword;
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// Kontrolka Retyped.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Retyped;
+        
+        /// <summary>
+        /// Kontrolka Label5.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
+        
+        /// <summary>
+        /// Kontrolka Group.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Group;
         
         /// <summary>
         /// Kontrolka LogInButton.
@@ -94,12 +112,12 @@ namespace Ankietnik {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Kontrolka RegisterLink.
+        /// Kontrolka Login.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RegisterLink;
+        protected global::System.Web.UI.WebControls.HyperLink Login;
     }
 }
