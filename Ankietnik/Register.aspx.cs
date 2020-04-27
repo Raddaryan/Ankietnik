@@ -13,5 +13,10 @@ namespace Ankietnik
         {
 
         }
+
+        protected void RegisterButton_Click(object sender, EventArgs e)
+        {
+            AccountService.Register(NewUsernameTextBox.Text, NewPasswordTextBox.Text, RetypedTextBox.Text, int.Parse(GroupTextBox.Text));
+        }
     }
 }

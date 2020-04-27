@@ -24,21 +24,25 @@
                     <div>
                         <div class="form-group">
                             <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
-                            <asp:TextBox ID="Username" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
+                            <asp:TextBox ID="NewUsernameTextBox" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
+                            <asp:RequiredFieldValidator runat="server" id="reqNewUsername" controltovalidate="NewUsernameTextBox" errormessage="Wpisz swój adres email" forecolor="Red" Font-Size="10" />
                         </div>
                         <div class="form-group">
                             <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-                            <asp:TextBox ID="Password" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox ID="NewPasswordTextBox" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator runat="server" id="reqNewPassword" controltovalidate="NewPasswordTextBox" errormessage="Wpisz hasło" forecolor="Red" Font-Size="10" />
                         </div>
                         <div class="form-group">
                             <asp:Label ID="Label4" runat="server" Text="Powtórz hasło: "></asp:Label>
-                            <asp:TextBox ID="Retyped" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox ID="RetypedTextBox" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator runat="server" id="reqRetyped" controltovalidate="RetypedTextBox" errormessage="Powtórz hasło" forecolor="Red" Font-Size="10" />
                         </div>
                         <div class="form-group">
                             <asp:Label ID="Label5" runat="server" Text="Grupa: "></asp:Label>
-                            <asp:TextBox ID="Group" CssClass="form-control" runat="server" TextMode="Search"></asp:TextBox>
+                            <asp:TextBox ID="GroupTextBox" CssClass="form-control" runat="server" TextMode="Search"></asp:TextBox>
+                            <asp:RequiredFieldValidator runat="server" id="reqGroup" controltovalidate="GroupTextBox" errormessage="Wybierz grupę" forecolor="Red" Font-Size="10" />
                         </div>
-                        <asp:Button ID="LogInButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zaloguj" />
+                        <asp:Button ID="RegisterButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zarejestruj" OnClick="RegisterButton_Click" />
                         <br />
                         <p class="text-center">
                             <asp:Label ID="Label3" runat="server" Text="Masz już konto? "></asp:Label>
