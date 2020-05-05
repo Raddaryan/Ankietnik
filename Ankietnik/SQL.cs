@@ -46,6 +46,20 @@ namespace Ankietnik
             Constants.USERS_GROUP_FIELD
         });
 
+        internal static string Quotify(string element) => $"'{element}'";
+
+        internal static string ValuesList(IList<object> values)
+        {
+            var sb = new StringBuilder();
+            for (var i = 0; i < values.Count; i++)
+            {
+                sb.Append((values[i] is string ? Quotify(values[i].ToString()) : values[i].ToString()));
+                if (i != values.Count - 1) sb.Append($"{Constants.LIST_SEPARATOR} ");
+            }
+
+            return sb.ToString();
+        }
+
         internal static string FieldList(IList<string> fieldNames)
         {
             var sb = new StringBuilder();

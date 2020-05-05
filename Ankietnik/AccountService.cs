@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Ankietnik
@@ -9,24 +10,31 @@ namespace Ankietnik
         internal static OperationResult Login(string userName, string password)
         {
             var result = new OperationResult();
-            var user = GetUser(userName);
-
-            if (user == null)
+            try
             {
-                result.Status = OperationStatus.Failed;
-                result.Message = Constants.UserNotFoundMsg;
-            } 
-            else
-            {
-                if (CryptoService.VerifyPassword(password, user.Password))
+                var user = GetUser(userName);
+                if (user == null)
                 {
-                    result.Status = OperationStatus.Success;
+                    result.Status = OperationStatus.Failed;
+                    result.Message = Constants.UserNotFoundMsg;
                 }
                 else
                 {
-                    result.Status = OperationStatus.Failed;
-                    result.Message = Constants.IncorrectCredentialsMsg;
+                    if (CryptoService.VerifyPassword(password, user.Password))
+                    {
+                        result.Status = OperationStatus.Success;
+                    }
+                    else
+                    {
+                        result.Status = OperationStatus.Failed;
+                        result.Message = Constants.IncorrectCredentialsMsg;
+                    }
                 }
+            }
+            catch
+            {
+                result.Status = OperationStatus.Failed;
+                result.Message = Constants.DataAccessErrorMsg;
             }
 
             return result;
@@ -37,39 +45,39 @@ namespace Ankietnik
         internal static OperationResult Register(string userName, string password, string retyped, int group)        
         {
             var result = new OperationResult();
-            var user = GetUser(userName);
 
-            if (user != null)
+            try
             {
-                result.Status = OperationStatus.Failed;
-                result.Message = Constants.UserAlreadyExistsMsg;
-            } 
-            else 
-            {
-                var queryBuilder = new StringBuilder();
-                var encryptedPassword = CryptoService.EncryptPassword(password);
-                queryBuilder.Append(
-                    $"{SQL.Insert}{Constants.USERS_TABLE_NAME} ({SQL.UserFieldList}) {SQL.Values} (" +
-                    SQL.FieldList(new List<string>() {
-                        userName,
-                        encryptedPassword.Salt.ToString(),
-                        encryptedPassword.Key.ToString(),
-                        Constants.Roles[Constants.Role.User].ToString()
-                    }) 
-                );
+                var user = GetUser(userName);
 
-                try
+                if (user != null)
                 {
+                    result.Status = OperationStatus.Failed;
+                    result.Message = Constants.UserAlreadyExistsMsg;
+                }
+                else
+                {
+                    var queryBuilder = new StringBuilder();
+                    var encryptedPassword = CryptoService.EncryptPassword(password);
+                    queryBuilder.Append(
+                        $"{SQL.Insert}{Constants.USERS_TABLE_NAME} ({SQL.UserFieldList}) {SQL.Values} (" +
+                        SQL.ValuesList(new List<object>() {
+                            userName,
+                            encryptedPassword.Salt.ToString(),
+                            encryptedPassword.Key.ToString(),
+                            Constants.Role.User
+                        })
+                    );
+
                     var dataAccessor = DataAccess.Instance;
                     dataAccessor.ExecuteSqlQuery(queryBuilder.ToString());
                     result.Status = OperationStatus.Success;
-                } 
-                catch (Exception ex)
-                {
-                    result.Status = OperationStatus.Failed;
-                    result.Message = ex.Message;
-                    return result;
                 }
+            }
+            catch
+            {
+                result.Status = OperationStatus.Failed;
+                result.Message = Constants.DataAccessErrorMsg;
             }
 
             return result;
@@ -88,28 +96,61 @@ namespace Ankietnik
                 })
             );
 
-            var dataAccessor = DataAccess.Instance;
-            var userDataTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
-            var userData = userDataTable?.Rows.Count > 0 ? userDataTable.Rows[0] : null;
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var userDataTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+                var userData = userDataTable?.Rows.Count > 0 ? userDataTable.Rows[0] : null;
 
-            if (userData == null)
+                if (userData == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return new User()
+                    {
+                        Username = userData[Constants.USERS_USERNAME_FIELD].ToString(),
+                        Password = new EncryptedPassword()
+                        {
+                            Salt = Encoding.ASCII.GetBytes(userData[Constants.USERS_SALT_FIELD].ToString()),
+                            Key = Encoding.ASCII.GetBytes(userData[Constants.USERS_KEY_FIELD].ToString())
+                        },
+                        Role = int.Parse(userData[Constants.USERS_ROLE_FIELD].ToString()),
+                        Group = int.Parse(userData[Constants.USERS_GROUP_FIELD].ToString())
+                    };
+                }
+            } 
+            catch
+            {
+                throw;
+            }
+        }
+
+        internal static List<int> GetGroupIdList()
+        {
+            var result = new List<int>();
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append($"{SQL.Select} {Constants.GROUP_ID_FIELD} {SQL.From} {Constants.GROUPS_TABLE_NAME}");
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var groupTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+                if (groupTable != null && groupTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in groupTable.Rows)
+                    {
+                        result.Add(int.Parse(row[0].ToString()));
+                    }
+                } 
+            }
+            catch (Exception ex)
             {
                 return null;
-            } 
-            else
-            {
-                return new User()
-                {
-                    Username = userData[Constants.USERS_USERNAME_FIELD].ToString(),
-                    Password = new EncryptedPassword()
-                    {
-                        Salt = Encoding.ASCII.GetBytes(userData[Constants.USERS_SALT_FIELD].ToString()),
-                        Key = Encoding.ASCII.GetBytes(userData[Constants.USERS_KEY_FIELD].ToString())
-                    },
-                    Role = int.Parse(userData[Constants.USERS_ROLE_FIELD].ToString()),
-                    Group = int.Parse(userData[Constants.USERS_GROUP_FIELD].ToString())
-                };
             }
+
+            return result;
         }
     }
 }
