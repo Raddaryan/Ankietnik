@@ -60,7 +60,7 @@ namespace Ankietnik
 
                 try
                 {
-                    var dataAccessor = DataAccessor.Instance;
+                    var dataAccessor = DataAccess.Instance;
                     dataAccessor.ExecuteSqlQuery(queryBuilder.ToString());
                     result.Status = OperationStatus.Success;
                 } 
@@ -88,7 +88,7 @@ namespace Ankietnik
                 })
             );
 
-            var dataAccessor = DataAccessor.Instance;
+            var dataAccessor = DataAccess.Instance;
             var userDataTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
             var userData = userDataTable?.Rows.Count > 0 ? userDataTable.Rows[0] : null;
 
