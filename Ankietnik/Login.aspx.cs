@@ -16,7 +16,37 @@ namespace Ankietnik
 
         protected void LogInButton_Click(object sender, EventArgs e)
         {
-            AccountService.Login(UsernameTextBox.Text, PasswordTextBox.Text);
+
+            var operationResult = AccountService.Login(UsernameTextBox.Text, PasswordTextBox.Text);
+
+            if (operationResult.Status == OperationStatus.Failed)
+            {
+                ShowMessage(operationResult.Message, WarningType.Danger);
+            }
+                
         }
+
+        public enum WarningType
+        {
+            Success,
+            Info,
+            Warning,
+            Danger
+        }
+
+        public void ShowMessage(string Message, WarningType type)
+        {
+            Panel PanelMessage = Master.FindControl("Message") as Panel;
+            Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
+
+            labelMessage.Text = Message;
+            PanelMessage.CssClass = string.Format("alert alert-{0} alert-dismissable", type.ToString().ToLower());
+            PanelMessage.Attributes.Add("role", "alert");
+            PanelMessage.Visible = true;
+        }
+
+
+
     }
+
 }
