@@ -24,17 +24,19 @@
                     <div>
                         <div class="form-group">
                             <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
-                            <asp:TextBox ID="Username" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
+                            <asp:TextBox ID="UsernameTextBox" CssClass="form-control" runat="server" TextMode="Email" ValidateRequestMode="Enabled"></asp:TextBox>
+                            <asp:RequiredFieldValidator runat="server" id="reqUsername" controltovalidate="UsernameTextBox" errormessage="Wpisz swój adres email" forecolor="Red" Font-Size="10" />
                         </div>
                         <div class="form-group">
                             <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-                            <asp:TextBox ID="Password" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
+                            <asp:RequiredFieldValidator runat="server" id="reqPassword" controltovalidate="PasswordTextBox" errormessage="Wpisz swoje hasło" forecolor="Red" Font-Size="10" />
                         </div>
-                        <asp:Button ID="LogInButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zaloguj" />
+                        <asp:Button ID="LogInButton" CssClass="btn btn-primary btn-block" runat="server" Text="Zaloguj" OnClick="LogInButton_Click" ValidateRequestMode="Enabled" />
                         <br />
                         <p class="text-center">
                             <asp:Label ID="Label3" runat="server" Text="Nie masz konta? "></asp:Label>
-                            <asp:HyperLink ID="Register" runat="server">Zarejestruj się</asp:HyperLink>
+                            <asp:HyperLink ID="RegisterLink" NavigateUrl="Register.aspx" runat="server">Zarejestruj się!</asp:HyperLink>
                         </p>
                     </div>
                 </form>
