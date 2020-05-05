@@ -16,14 +16,15 @@ namespace Ankietnik
         internal const string DataAccessErrorMsg = "Wystąpił błąd przy próbie połączenia z bazą danych.";
 
         // database constants
-        internal const string CONN_STRING = "temp_conn_string";
+        internal const string CONN_STRING = "Data Source=RADEK-XPS13;Initial Catalog=Ankietnik;Integrated Security=True";
 
         // user
         internal const string USERS_TABLE_NAME = "Users";
-        internal const string USERS_USERNAME_FIELD = "Username";
-        internal const string USERS_SALT_FIELD = "Salt";
-        internal const string USERS_KEY_FIELD = "Key";
-        internal const string USERS_ROLE_FIELD = "RoleId";
+        internal const string USERS_USERNAME_FIELD = "Email";
+        internal const string USERS_SALT_FIELD = "PwdSalt";
+        internal const string USERS_KEY_FIELD = "PwdKey";
+        internal const string USERS_ROLE_FIELD = "Role";
+        internal const string USERS_STUDENT_ID_FIELD = "StudentID";
         internal const string USERS_GROUP_FIELD = "GroupId";
 
         // group

@@ -31,7 +31,7 @@ namespace Ankietnik
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 result.Status = OperationStatus.Failed;
                 result.Message = Constants.DataAccessErrorMsg;
@@ -63,10 +63,11 @@ namespace Ankietnik
                         $"{SQL.Insert}{Constants.USERS_TABLE_NAME} ({SQL.UserFieldList}) {SQL.Values} (" +
                         SQL.ValuesList(new List<object>() {
                             userName,
-                            encryptedPassword.Salt.ToString(),
-                            encryptedPassword.Key.ToString(),
-                            Constants.Role.User
-                        })
+                            Convert.ToBase64String(encryptedPassword.Salt),
+                            Convert.ToBase64String(encryptedPassword.Key),
+                            (int)Constants.Role.User,
+                            group
+                        }) + ")"
                     );
 
                     var dataAccessor = DataAccess.Instance;
@@ -74,7 +75,7 @@ namespace Ankietnik
                     result.Status = OperationStatus.Success;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 result.Status = OperationStatus.Failed;
                 result.Message = Constants.DataAccessErrorMsg;
@@ -113,15 +114,15 @@ namespace Ankietnik
                         Username = userData[Constants.USERS_USERNAME_FIELD].ToString(),
                         Password = new EncryptedPassword()
                         {
-                            Salt = Encoding.ASCII.GetBytes(userData[Constants.USERS_SALT_FIELD].ToString()),
-                            Key = Encoding.ASCII.GetBytes(userData[Constants.USERS_KEY_FIELD].ToString())
+                            Salt = Convert.FromBase64String(userData[Constants.USERS_SALT_FIELD].ToString()),
+                            Key = Convert.FromBase64String(userData[Constants.USERS_KEY_FIELD].ToString())
                         },
                         Role = int.Parse(userData[Constants.USERS_ROLE_FIELD].ToString()),
                         Group = int.Parse(userData[Constants.USERS_GROUP_FIELD].ToString())
                     };
                 }
             } 
-            catch
+            catch (Exception ex)
             {
                 throw;
             }
@@ -145,7 +146,7 @@ namespace Ankietnik
                     }
                 } 
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
             }

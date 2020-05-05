@@ -5,19 +5,19 @@ using System.Web;
 
 namespace Ankietnik
 {
-    internal struct EncryptedPassword
+    public struct EncryptedPassword
     {
         internal byte[] Salt;
         internal byte[] Key;
     }
 
-    internal struct OperationResult
+    public struct OperationResult
     {
         internal OperationStatus Status;
         internal string Message;
     }
 
-    internal class User
+    public class User
     {
         internal string Username;
         internal EncryptedPassword Password;
@@ -25,5 +25,6 @@ namespace Ankietnik
         internal int Group;
     }
 
-    internal enum OperationStatus { Failed, Success}
+    public enum OperationStatus { Failed, Success}
+    public enum WarningType { Success, Info, Warning, Danger }
 }

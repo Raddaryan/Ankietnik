@@ -33,7 +33,7 @@ namespace Ankietnik
         internal struct LogicComparison
         {
             internal string LeftOperand;
-            internal string RightOperand;
+            internal object RightOperand;
             internal LogicOperator Operator;
         }
 
@@ -77,7 +77,8 @@ namespace Ankietnik
 
         internal static string SingleCriteria(LogicComparison comparison)
         {
-            return $"{comparison.LeftOperand} {LogicOperators[comparison.Operator]} {comparison.RightOperand} ";
+            return $"{comparison.LeftOperand} {LogicOperators[comparison.Operator]} " +
+                   $"{(comparison.RightOperand is string ? Quotify(comparison.RightOperand.ToString()) : comparison.RightOperand)} ";
         }
 
         internal static string MultipleCriteria(Dictionary<LogicComparison, CriteriaConnector?> criteria)
