@@ -36,7 +36,7 @@ namespace Ankietnik
 
         public void ShowMessage(string Message, WarningType type)
         {
-            Panel PanelMessage = Master.FindControl("Message") as Panel;
+            Panel PanelMessage = FindControl("Message") as Panel;
             Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
 
             labelMessage.Text = Message;

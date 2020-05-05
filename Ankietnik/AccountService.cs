@@ -145,7 +145,7 @@ namespace Ankietnik
                     }
                 } 
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
