@@ -3,19 +3,19 @@ using System.Data.SqlClient;
 
 namespace Ankietnik
 {
-    internal class DataAccessor
+    internal class DataAccess
     {
         private SqlConnection _conn;
-        private static DataAccessor _instance;
+        private static DataAccess _instance;
         
-        internal static DataAccessor Instance
+        internal static DataAccess Instance
         {
             get
             {
                 if (_instance != null)
                     return _instance;
 
-                return _instance = new DataAccessor();
+                return _instance = new DataAccess();
             }
         }
 
@@ -57,11 +57,11 @@ namespace Ankietnik
         }
 
 
-        private DataAccessor()
+        private DataAccess()
         {
         }
 
-        ~DataAccessor()
+        ~DataAccess()
         {
             if (Conn.State == ConnectionState.Open) 
                 Conn.Close();

@@ -74,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="DataAccessor.cs" />
+    <Compile Include="DataAccess.cs" />
     <Compile Include="DataModels.cs" />
     <Compile Include="CryptoService.cs" />
     <Compile Include="AccountService.cs" />
