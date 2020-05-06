@@ -14,6 +14,7 @@ namespace Ankietnik
         internal const string From = "FROM ";
         internal const string Where = "WHERE ";
         internal const string Values = "VALUES";
+        internal const string In = "IN ";
 
         internal const string Space = " ";
 
@@ -39,6 +40,7 @@ namespace Ankietnik
 
         internal static readonly string UserFieldList = FieldList(new List<string>()
         {
+            Constants.USERS_USERID_FIELD,
             Constants.USERS_USERNAME_FIELD,
             Constants.USERS_SALT_FIELD,
             Constants.USERS_KEY_FIELD,

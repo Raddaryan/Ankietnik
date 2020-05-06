@@ -73,6 +73,7 @@ namespace Ankietnik
                     var dataAccessor = DataAccess.Instance;
                     dataAccessor.ExecuteSqlQuery(queryBuilder.ToString());
                     result.Status = OperationStatus.Success;
+                    result.Message = Constants.RegistrationSuccessMsg;
                 }
             }
             catch (Exception ex)
@@ -162,6 +163,7 @@ namespace Ankietnik
                 {
                     return new User()
                     {
+                        Id = int.Parse(userData[Constants.USERS_USERID_FIELD].ToString()),
                         Username = userData[Constants.USERS_USERNAME_FIELD].ToString(),
                         Password = new EncryptedPassword()
                         {

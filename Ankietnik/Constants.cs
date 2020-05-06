@@ -14,6 +14,7 @@ namespace Ankietnik
         internal const string IncorrectCredentialsMsg = "Niepoprawny login lub hasło.";
         internal const string UserAlreadyExistsMsg = "Użytkownik o takim loginie już istnieje.";
         internal const string DataAccessErrorMsg = "Wystąpił błąd przy próbie połączenia z bazą danych.";
+        internal const string RegistrationSuccessMsg = "Użytkownik został zarejestrowany.";
 
         // database constants
         internal const string CONN_STRING = "Data Source=RADEK-XPS13;Initial Catalog=Ankietnik;Integrated Security=True";
@@ -37,6 +38,7 @@ namespace Ankietnik
         internal const string QUEST_QUESTID_FIELD = "QuestionnaireID";
         internal const string QUEST_OWNERID_FIELD = "UserID";
         internal const string QUEST_GROUPID_FIELD = "GroupID";
+        internal const string PENDING_TABLE_NAME = "Pending";
 
         // questions
         internal const string QUESTIONS_TABLE_NAME = "Questions";

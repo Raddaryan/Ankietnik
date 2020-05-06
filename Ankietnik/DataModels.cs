@@ -19,6 +19,7 @@ namespace Ankietnik
 
     public class User
     {
+        internal int Id;
         internal string Username;
         internal EncryptedPassword Password;
         internal int Role;
