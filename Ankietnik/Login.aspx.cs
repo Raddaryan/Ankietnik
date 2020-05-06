@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace Ankietnik
@@ -19,7 +20,6 @@ namespace Ankietnik
             {
                 ShowMessage(operationResult.Message, WarningType.Danger, true);
             }
-
             else if (operationResult.Status == OperationStatus.Success)
             {
                 ShowMessage(operationResult.Message, WarningType.Success, true);
@@ -32,22 +32,15 @@ namespace Ankietnik
 
         }
 
-        public void ShowMessage(string Message, WarningType type, bool Visibility)
+        public void ShowMessage(string message, WarningType type, bool visibility)
         {
             Panel PanelMessage = FindControl("Message") as Panel;
             Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
 
-            labelMessage.Text = Message;
+            labelMessage.Text = message;
             PanelMessage.CssClass = string.Format("alert alert-{0} alert-dismissable", type.ToString().ToLower());
             PanelMessage.Attributes.Add("role", "alert");
-            if (Visibility == true)
-            {
-                PanelMessage.Visible = true;
-            }
-            else
-            {
-                PanelMessage.Visible = false;
-            }
+            PanelMessage.Visible = visibility;
         }
 
     }

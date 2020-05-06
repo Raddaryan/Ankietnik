@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+using System.Threading;
 using System.Web.UI.WebControls;
 
 namespace Ankietnik
@@ -25,7 +22,7 @@ namespace Ankietnik
             else if (operationResult.Status == OperationStatus.Success)
             {
                 ShowMessage(operationResult.Message, WarningType.Success, true);
-                Response.Redirect("Main.aspx");
+                Response.Redirect($"Login.aspx");
             }
             else{
                 ShowMessage(operationResult.Message, WarningType.Warning, false);
@@ -33,22 +30,15 @@ namespace Ankietnik
 
         }
 
-        public void ShowMessage(string Message, WarningType type, bool Visibility)
+        public void ShowMessage(string message, WarningType type, bool visibility)
         {
             Panel PanelMessage = FindControl("Message") as Panel;
             Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
 
-            labelMessage.Text = Message;
+            labelMessage.Text = message;
             PanelMessage.CssClass = string.Format("alert alert-{0} alert-dismissable", type.ToString().ToLower());
             PanelMessage.Attributes.Add("role", "alert");
-            if (Visibility == true)
-            {
-                PanelMessage.Visible = true;
-            }
-            else
-            {
-                PanelMessage.Visible = false;
-            }
+            PanelMessage.Visible = visibility;
         }
     }
 }

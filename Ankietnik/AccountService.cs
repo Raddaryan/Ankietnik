@@ -139,8 +139,8 @@ namespace Ankietnik
         {
             var queryBuilder = new StringBuilder();
             queryBuilder.Append(
-                SQL.Select + SQL.UserFieldList +
-                $"{SQL.From} {Constants.USERS_TABLE_NAME} {SQL.Where} " +
+                $"{SQL.Select}{Constants.USERS_USERID_FIELD}, {SQL.UserFieldList} " +
+                $"{SQL.From}{Constants.USERS_TABLE_NAME} {SQL.Where}" +
                 SQL.SingleCriteria(new SQL.LogicComparison()
                 {
                     LeftOperand = fieldName,

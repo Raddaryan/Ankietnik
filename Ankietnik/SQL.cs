@@ -40,7 +40,6 @@ namespace Ankietnik
 
         internal static readonly string UserFieldList = FieldList(new List<string>()
         {
-            Constants.USERS_USERID_FIELD,
             Constants.USERS_USERNAME_FIELD,
             Constants.USERS_SALT_FIELD,
             Constants.USERS_KEY_FIELD,
