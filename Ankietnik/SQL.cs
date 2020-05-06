@@ -46,6 +46,17 @@ namespace Ankietnik
             Constants.USERS_GROUP_FIELD
         });
 
+        internal static readonly string QuestionnaireFieldList = FieldList(new List<string>()
+        {
+            Constants.QUEST_QUESTID_FIELD, Constants.QUEST_OWNERID_FIELD, Constants.QUEST_GROUPID_FIELD
+        });
+
+        internal static readonly string QuestionFieldList = FieldList(new List<string>() 
+        { 
+            Constants.QUESTIONS_QUESTIONID_FIELD, Constants.QUESTIONS_CONTENT_FIELD 
+        });
+            
+
         internal static string Quotify(string element) => $"'{element}'";
 
         internal static string ValuesList(IList<object> values)
