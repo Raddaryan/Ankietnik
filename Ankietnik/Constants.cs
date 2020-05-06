@@ -20,6 +20,7 @@ namespace Ankietnik
 
         // user
         internal const string USERS_TABLE_NAME = "Users";
+        internal const string USERS_USERID_FIELD = "UserID";
         internal const string USERS_USERNAME_FIELD = "Email";
         internal const string USERS_SALT_FIELD = "PwdSalt";
         internal const string USERS_KEY_FIELD = "PwdKey";
@@ -30,6 +31,18 @@ namespace Ankietnik
         // group
         internal const string GROUPS_TABLE_NAME = "Groups";
         internal const string GROUP_ID_FIELD = "GroupId";
+
+        // questionnaires
+        internal const string QUEST_TABLE_NAME = "Questionnaires";
+        internal const string QUEST_QUESTID_FIELD = "QuestionnaireID";
+        internal const string QUEST_OWNERID_FIELD = "UserID";
+        internal const string QUEST_GROUPID_FIELD = "GroupID";
+
+        // questions
+        internal const string QUESTIONS_TABLE_NAME = "Questions";
+        internal const string QUESTIONS_QUESTIONID_FIELD = "QuestionID";
+        internal const string QUESTIONS_CONTENT_FIELD = "Question";
+        internal const string QUESTIONS_PARENTID_FIELD = "QuestionnaireID";
 
         internal enum Role { User, Owner}
         internal static readonly Dictionary<Role, int> Roles = new Dictionary<Role, int>
