@@ -17,12 +17,22 @@ namespace Ankietnik
 
             if (operationResult.Status == OperationStatus.Failed)
             {
-                ShowMessage(operationResult.Message, WarningType.Danger);
+                ShowMessage(operationResult.Message, WarningType.Danger, true);
             }
-                
+
+            else if (operationResult.Status == OperationStatus.Success)
+            {
+                ShowMessage(operationResult.Message, WarningType.Success, true);
+                Response.Redirect("Main.aspx");
+            }
+            else
+            {
+                ShowMessage(operationResult.Message, WarningType.Warning, false);
+            }
+
         }
 
-        public void ShowMessage(string Message, WarningType type)
+        public void ShowMessage(string Message, WarningType type, bool Visibility)
         {
             Panel PanelMessage = FindControl("Message") as Panel;
             Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
@@ -30,10 +40,15 @@ namespace Ankietnik
             labelMessage.Text = Message;
             PanelMessage.CssClass = string.Format("alert alert-{0} alert-dismissable", type.ToString().ToLower());
             PanelMessage.Attributes.Add("role", "alert");
-            PanelMessage.Visible = true;
+            if (Visibility == true)
+            {
+                PanelMessage.Visible = true;
+            }
+            else
+            {
+                PanelMessage.Visible = false;
+            }
         }
-
-
 
     }
 

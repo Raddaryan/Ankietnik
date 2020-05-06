@@ -16,7 +16,39 @@ namespace Ankietnik
 
         protected void RegisterButton_Click(object sender, EventArgs e)
         {
-            AccountService.Register(NewUsernameTextBox.Text, NewPasswordTextBox.Text, RetypedTextBox.Text, int.Parse(GroupTextBox.Text));
+            var operationResult = AccountService.Register(NewUsernameTextBox.Text, NewPasswordTextBox.Text, RetypedTextBox.Text, int.Parse(GroupTextBox.Text));
+
+            if (operationResult.Status == OperationStatus.Failed)
+            {
+                ShowMessage(operationResult.Message, WarningType.Danger, true);
+            }
+            else if (operationResult.Status == OperationStatus.Success)
+            {
+                ShowMessage(operationResult.Message, WarningType.Success, true);
+                Response.Redirect("Main.aspx");
+            }
+            else{
+                ShowMessage(operationResult.Message, WarningType.Warning, false);
+            }
+
+        }
+
+        public void ShowMessage(string Message, WarningType type, bool Visibility)
+        {
+            Panel PanelMessage = FindControl("Message") as Panel;
+            Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
+
+            labelMessage.Text = Message;
+            PanelMessage.CssClass = string.Format("alert alert-{0} alert-dismissable", type.ToString().ToLower());
+            PanelMessage.Attributes.Add("role", "alert");
+            if (Visibility == true)
+            {
+                PanelMessage.Visible = true;
+            }
+            else
+            {
+                PanelMessage.Visible = false;
+            }
         }
     }
 }

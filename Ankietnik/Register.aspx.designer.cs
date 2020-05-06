@@ -13,6 +13,24 @@ namespace Ankietnik {
     public partial class Register {
         
         /// <summary>
+        /// Kontrolka Message.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Message;
+        
+        /// <summary>
+        /// Kontrolka labelMessage.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelMessage;
+        
+        /// <summary>
         /// Kontrolka form1.
         /// </summary>
         /// <remarks>

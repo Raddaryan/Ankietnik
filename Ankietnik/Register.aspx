@@ -19,6 +19,12 @@
         <div class="col-md-4 py-3">
             <h2>Ankietnik</h2>
                 <br />
+            <div class="MessagePanelDiv">
+                <asp:Panel ID="Message" runat="server" Visible="False">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <asp:Label ID="labelMessage" runat="server" />
+                </asp:Panel>
+            </div>
             <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
                 <form id="form1" runat="server">
                     <div>
