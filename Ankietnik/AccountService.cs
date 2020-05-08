@@ -135,6 +135,40 @@ namespace Ankietnik
             return result;
         }
 
+        internal static List<int> GetUserIdsForGroup(int groupId)
+        {
+            var result = new List<int>();
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Select} {Constants.USERS_USERID_FIELD} {SQL.From} {Constants.GROUPS_TABLE_NAME} {SQL.Where}" +
+                SQL.SingleCriteria(new SQL.LogicComparison()
+                {
+                    LeftOperand = Constants.USERS_GROUP_FIELD,
+                    RightOperand = groupId,
+                    Operator = SQL.LogicOperator.Equal
+                })
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var usersTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+                if (usersTable != null && usersTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in usersTable.Rows)
+                    {
+                        result.Add(int.Parse(row[0].ToString()));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return result;
+        }
+
         private static User GetUser(string fieldName, object criteria)
         {
             var queryBuilder = new StringBuilder();

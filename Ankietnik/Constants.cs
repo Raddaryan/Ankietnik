@@ -16,6 +16,9 @@ namespace Ankietnik
         internal const string DataAccessErrorMsg = "Wystąpił błąd przy próbie połączenia z bazą danych.";
         internal const string RegistrationSuccessMsg = "Użytkownik został zarejestrowany.";
 
+        internal const string CreateQuestionnaireErrorMsg = "Wystąpił błąd podczas próby zapisu ankiety.";
+        internal const string CreateQuestionnaireSuccessMsg = "Ankieta została pomyślnie zapisana.";
+
         // database constants
         internal const string CONN_STRING = "Data Source=RADEK-XPS13;Initial Catalog=Ankietnik;Integrated Security=True";
 

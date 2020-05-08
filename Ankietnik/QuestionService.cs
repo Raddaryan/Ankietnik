@@ -11,7 +11,7 @@ namespace Ankietnik
         {
             var queryBuilder = new StringBuilder();
             queryBuilder.Append(
-                SQL.Select + SQL.QuestionnaireFieldList +
+                $"{SQL.Select}{Constants.QUEST_QUESTID_FIELD}, {SQL.QuestionnaireFieldList}" +
                 $"{SQL.From} {Constants.QUEST_TABLE_NAME} {SQL.Where} " +
                 SQL.SingleCriteria(new SQL.LogicComparison()
                 {
@@ -98,7 +98,7 @@ namespace Ankietnik
             var questionnaires = new List<Questionnaire>();
             var queryBuilder = new StringBuilder();
             queryBuilder.Append(
-                SQL.Select + SQL.QuestionnaireFieldList +
+                $"{SQL.Select}{Constants.QUEST_QUESTID_FIELD}, {SQL.QuestionnaireFieldList}" +
                 $"{SQL.From} {Constants.QUEST_TABLE_NAME} {SQL.Where} " +
                 SQL.SingleCriteria(new SQL.LogicComparison()
                 {
@@ -144,7 +144,7 @@ namespace Ankietnik
             var questionnaires = new List<Questionnaire>();
             var queryBuilder = new StringBuilder();
             queryBuilder.Append(
-                SQL.Select + SQL.QuestionnaireFieldList +
+                $"{SQL.Select}{Constants.QUEST_QUESTID_FIELD}, {SQL.QuestionnaireFieldList}" +
                 $"{SQL.From} {Constants.QUEST_TABLE_NAME} {SQL.Where} " +
                 $"{Constants.QUEST_QUESTID_FIELD} {SQL.In} (" +
                     SQL.Select + Constants.QUEST_QUESTID_FIELD +
@@ -196,6 +196,75 @@ namespace Ankietnik
         internal static List<Questionnaire> GetPendingQuestionnairesForUser(User user)
         {
             return GetPendingQuestionnairesForUser(user.Id);
+        }
+
+        internal static OperationResult CreateQuestionnaire(Questionnaire quest)
+        {
+            var result = new OperationResult();
+            var queryBuilder = new StringBuilder();
+            try
+            {
+                // add questionnaire to db
+                queryBuilder.Append(
+                $"{SQL.Insert}{Constants.QUEST_TABLE_NAME} ({SQL.QuestionnaireFieldList}) {SQL.Values} (" +
+                SQL.ValuesList(new List<object>() {
+                        quest.OwnerId,
+                        quest.GroupId
+                    }) + ")"
+                );
+
+                var dataAccessor = DataAccess.Instance;
+                dataAccessor.ExecuteSqlQuery(queryBuilder.ToString());
+                result.Status = OperationStatus.Success;
+                result.Message = Constants.RegistrationSuccessMsg;
+
+                // add all questions to db
+                queryBuilder.Clear();
+                queryBuilder.Append($"{SQL.Insert}{Constants.QUESTIONS_TABLE_NAME} ({SQL.QuestionFieldList}) {SQL.Values} ");
+                    
+                foreach (var question in quest.Questions)
+                {
+                    queryBuilder.Append(
+                        "(" + SQL.ValuesList(new List<object>() {
+                            question.Id,
+                            quest.Id,
+                            question.Content
+                         }) + ")"
+                    );
+
+                    if (quest.Questions.IndexOf(question) != quest.Questions.Count - 1)
+                        queryBuilder.Append(", ");
+                }
+
+                // add questionnaire to the pending table for all the users from the target group
+                var userIds = AccountService.GetUserIdsForGroup(quest.GroupId);
+
+                if (userIds != null)
+                {
+                    queryBuilder.Clear();
+                    queryBuilder.Append(
+                        $"{SQL.Insert}{Constants.PENDING_TABLE_NAME} (" +
+                        $"{SQL.ValuesList(new List<object>() { Constants.QUEST_QUESTID_FIELD, Constants.USERS_USERID_FIELD})}) {SQL.Values}"
+                    );
+
+                    foreach (var userId in userIds)
+                    {
+                        queryBuilder.Append($"({quest.Id}, {userId})");
+                        if (userIds.IndexOf(userId) != userIds.Count - 1)
+                            queryBuilder.Append(", ");
+                    }
+                }
+
+                result.Status = OperationStatus.Success;
+                result.Message = Constants.CreateQuestionnaireSuccessMsg;
+            } 
+            catch (Exception ex)
+            {
+                result.Status = OperationStatus.Failed;
+                result.Message = Constants.CreateQuestionnaireErrorMsg;
+            }
+
+            return result;
         }
     }
 }
