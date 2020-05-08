@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Ankietnik
 {
-    public partial class Main : System.Web.UI.Page
+    public partial class Site : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -15,6 +15,12 @@ namespace Ankietnik
             {
                 Response.Redirect($"Login.aspx");
             }
+        }
+
+        protected void LogOutButton_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect($"Login.aspx");
         }
     }
 }

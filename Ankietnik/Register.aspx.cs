@@ -8,7 +8,10 @@ namespace Ankietnik
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Name"] != null)
+            {
+                Response.Redirect($"Main.aspx");
+            }
         }
 
         protected void RegisterButton_Click(object sender, EventArgs e)

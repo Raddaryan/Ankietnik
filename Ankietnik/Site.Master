@@ -1,0 +1,52 @@
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Ankietnik.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ankietnik</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+           <nav class="navbar navbar-expand-sm bg-light justify-content-between navbar-fixed-top">
+              <!-- Brand -->
+              <h1>Ankietnik</h1>
+              <!-- Links -->
+              <ul class="navbar-nav navbar-right">
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Moje konto
+                  </a>
+                  <div class="dropdown-menu">
+                    <asp:Button ID="Logout" CssClass="dropdown-item" runat="server" OnClick="LogOutButton_Click" Text="Wyloguj" />
+                  </div>
+                </li>
+              </ul>
+            </nav>
+        </div>
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContntentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <footer>
+
+        </footer>
+
+    </form>
+</body>
+</html>

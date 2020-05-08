@@ -8,7 +8,10 @@ namespace Ankietnik
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Name"] != null)
+            {
+                Response.Redirect($"Main.aspx");
+            }
         }
 
         protected void LogInButton_Click(object sender, EventArgs e)
@@ -23,6 +26,7 @@ namespace Ankietnik
             else if (operationResult.Status == OperationStatus.Success)
             {
                 ShowMessage(operationResult.Message, WarningType.Success, true);
+                Session["Name"] = UsernameTextBox.Text;
                 Response.Redirect("Main.aspx");
             }
             else
