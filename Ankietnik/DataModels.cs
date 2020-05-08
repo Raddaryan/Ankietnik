@@ -34,7 +34,7 @@ namespace Ankietnik
 
     public class Questionnaire
     {
-        internal int Id;
+        internal int? Id;
         internal int OwnerId;
         internal int GroupId;
         internal List<Question> Questions;
