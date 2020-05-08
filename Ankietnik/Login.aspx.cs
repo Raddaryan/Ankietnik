@@ -12,6 +12,12 @@ namespace Ankietnik
             {
                 Response.Redirect($"Main.aspx");
             }
+
+            if (Session["Registered"] != null)
+            {
+                ShowMessage(Constants.RegistrationSuccessMsg, WarningType.Success, true);
+                Session.Abandon();
+            }
         }
 
         protected void LogInButton_Click(object sender, EventArgs e)
