@@ -21,9 +21,8 @@ namespace Ankietnik
                 String userName = "";
                 userName = Session["Name"].ToString();
                 var questionnairesList = QuestionService.GetPendingQuestionnairesForUser(userName);
-                ArrayList arrayQuestionnaires = new ArrayList();
 
-                ListBoxWypelnij.DataSource = 
+                ListBoxWypelnij.DataSource = QuestionService.GetArrayListOfIds(questionnairesList);
                 ListBoxWypelnij.DataBind();
             }
 
