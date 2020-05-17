@@ -25,6 +25,7 @@ namespace Ankietnik
             else if (operationResult.Status == OperationStatus.Success)
             {
                 ShowMessage(operationResult.Message, WarningType.Success, true);
+                Session["Registered"] = "ture";
                 Response.Redirect($"Login.aspx");
             }
             else{
