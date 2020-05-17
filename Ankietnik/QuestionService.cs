@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -265,6 +266,17 @@ namespace Ankietnik
             }
 
             return result;
+        }
+
+        internal static ArrayList GetArrayListOfIds(List<Questionnaire> quests)
+        {
+            var list = new ArrayList();
+            foreach (var quest in quests)
+            {
+                list.Add(quest.Id);
+            }
+
+            return list;
         }
     }
 }
