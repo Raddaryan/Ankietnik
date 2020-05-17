@@ -18,6 +18,7 @@ namespace Ankietnik
             }
             else
             {
+                ButtonWypelnij.Visible = false;
                 String userName = "";
                 userName = Session["Name"].ToString();
                 var questionnairesList = QuestionService.GetPendingQuestionnairesForUser(userName);
@@ -29,9 +30,14 @@ namespace Ankietnik
         }
 
 
-        protected void ListBoxWypelnij_SelectedIndexChanged1(object sender, EventArgs e)
+        protected void ListBoxWypelnij_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ButtonWypelnij.Visible = true;
+        }
 
+        protected void ButtonWypelnij_Click(object sender, EventArgs e)
+        {
+            var selectedQuestId = ListBoxWypelnij.SelectedValue;
         }
     }
 }

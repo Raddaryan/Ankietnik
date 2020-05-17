@@ -16,9 +16,10 @@
             </div>
             <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
             <h4>Wypełnij ankiety:</h4>
-                <asp:ListBox ID="ListBoxWypelnij" runat="server"></asp:ListBox>
+                <asp:ListBox ID="ListBoxWypelnij" runat="server" OnSelectedIndexChanged="ListBoxWypelnij_SelectedIndexChanged"></asp:ListBox>
+                <asp:Button ID="ButtonWypelnij" Text="Wypełnij" runat="server" OnClick="ButtonWypelnij_Click" />
             <h4>Sprawdź wypełnione:</h4>
-                <asp:ListBox ID="ListBoxSprawdz" runat="server"></asp:ListBox>
+                <asp:ListBox ID="ListBoxSprawdz" runat="server"></asp:ListBox><a href="Register.aspx.cs">Register.aspx.cs</a>
             </div>
         </div>
         <div class="col-md-2"></div>
