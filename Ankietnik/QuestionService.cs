@@ -148,13 +148,13 @@ namespace Ankietnik
                 $"{SQL.From} {Constants.QUEST_TABLE_NAME} {SQL.Where} " +
                 $"{Constants.QUEST_QUESTID_FIELD} {SQL.In} (" +
                     SQL.Select + Constants.QUEST_QUESTID_FIELD +
-                    $"{SQL.From} {Constants.PENDING_TABLE_NAME} {SQL.Where} " +
+                    $" {SQL.From} {Constants.PENDING_TABLE_NAME} {SQL.Where} " +
                     SQL.SingleCriteria(new SQL.LogicComparison()
                     {
                         LeftOperand = Constants.USERS_USERID_FIELD,
                         RightOperand = userId,
                         Operator = SQL.LogicOperator.Equal
-                    })
+                    }) + ")"
             );
 
             try

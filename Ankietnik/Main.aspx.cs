@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,23 @@ namespace Ankietnik
             {
                 Response.Redirect($"Login.aspx");
             }
+            else
+            {
+                String userName = "";
+                userName = Session["Name"].ToString();
+                var questionnairesList = QuestionService.GetPendingQuestionnairesForUser(userName);
+                ArrayList arrayQuestionnaires = new ArrayList();
+
+                ListBoxWypelnij.DataSource = 
+                ListBoxWypelnij.DataBind();
+            }
+
+        }
+
+
+        protected void ListBoxWypelnij_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -16,7 +16,9 @@
             </div>
             <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
             <h4>Wypełnij ankiety:</h4>
+                <asp:ListBox ID="ListBoxWypelnij" runat="server"></asp:ListBox>
             <h4>Sprawdź wypełnione:</h4>
+                <asp:ListBox ID="ListBoxSprawdz" runat="server"></asp:ListBox>
             </div>
         </div>
         <div class="col-md-2"></div>
