@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Complete.aspx" />
     <Content Include="Questionnaire.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Main.aspx" />
@@ -74,6 +75,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Complete.aspx.cs">
+      <DependentUpon>Complete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Complete.aspx.designer.cs">
+      <DependentUpon>Complete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="DataModels.cs" />
