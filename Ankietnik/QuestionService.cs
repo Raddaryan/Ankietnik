@@ -330,12 +330,38 @@ namespace Ankietnik
         internal static ArrayList GetArrayListOfIds(List<Questionnaire> quests)
         {
             var list = new ArrayList();
-            foreach (var quest in quests)
+            if (quests != null && quests.Count != 0)
             {
-                list.Add(quest.Id);
+                foreach (var quest in quests)
+                {
+                    list.Add(quest.Id);
+                }
             }
 
             return list;
+        }
+
+        internal static OperationResult SubmitResponse(List<Response> responses, string userName)
+        {
+            if (responses == null || responses.Count == 0)
+            {
+                return new OperationResult() {
+                    Status = OperationStatus.Failed,
+                    Message = Constants.EmptyResponseList
+                };
+            }
+
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Insert}{Constants.ANSWERS_TABLE_NAME} ({SQL.AnswersFieldList})"
+            );
+
+
+            return new OperationResult()
+            {
+                Status = OperationStatus.Success,
+                Message = Constants.ResponseSubmitted
+            };
         }
     }
 }

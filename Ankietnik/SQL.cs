@@ -57,6 +57,11 @@ namespace Ankietnik
         { 
             Constants.QUESTIONS_QUESTIONID_FIELD, Constants.QUESTIONS_CONTENT_FIELD 
         });
+
+        internal static readonly string AnswersFieldList = FieldList(new List<string>()
+        {
+            Constants.ANSWERS_QUESTIONID_FIELD, Constants.ANSWERS_SIGNATURE_FIELD, Constants.ANSWERS_SALT_FIELD
+        });
             
 
         internal static string Quotify(string element) => $"'{element}'";

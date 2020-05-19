@@ -19,6 +19,9 @@ namespace Ankietnik
         internal const string CreateQuestionnaireErrorMsg = "Wystąpił błąd podczas próby zapisu ankiety.";
         internal const string CreateQuestionnaireSuccessMsg = "Ankieta została pomyślnie zapisana.";
 
+        internal const string EmptyResponseList = "Nie można zapisać pustej odpowiedzi.";
+        internal const string ResponseSubmitted = "Odpowiedzi zostały pomyślnie zapisane.";
+
         // database constants
         internal const string CONN_STRING = "Data Source=RADEK-XPS13;Initial Catalog=Ankietnik;Integrated Security=True";
 
@@ -48,6 +51,12 @@ namespace Ankietnik
         internal const string QUESTIONS_QUESTIONID_FIELD = "QuestionID";
         internal const string QUESTIONS_CONTENT_FIELD = "Question";
         internal const string QUESTIONS_PARENTID_FIELD = "QuestionnaireID";
+
+        // answers
+        internal const string ANSWERS_TABLE_NAME = "Answers";
+        internal const string ANSWERS_QUESTIONID_FIELD = "QuestionID";
+        internal const string ANSWERS_SIGNATURE_FIELD = "Signature";
+        internal const string ANSWERS_SALT_FIELD = "Salt";
 
         internal enum Role { User, Owner}
         internal static readonly Dictionary<Role, int> Roles = new Dictionary<Role, int>
