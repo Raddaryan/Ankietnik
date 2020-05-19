@@ -341,27 +341,162 @@ namespace Ankietnik
             return list;
         }
 
-        internal static OperationResult SubmitResponse(List<Response> responses, string userName)
+        internal static OperationResult SubmitResponse(int questId, List<Response> responses, string userName, string passCode)
         {
             if (responses == null || responses.Count == 0)
             {
                 return new OperationResult() {
                     Status = OperationStatus.Failed,
-                    Message = Constants.EmptyResponseList
+                    Message = Constants.EmptyResponseListMsg
                 };
             }
 
+            var user = AccountService.GetUser(userName);
+            if (!CryptoService.VerifyPassword(passCode, user.Password))
+            {
+                return new OperationResult()
+                {
+                    Status = OperationStatus.Failed,
+                    Message = Constants.IncorrectPasswordMsg
+                };
+            }
+
+            var signature = CryptoService.GenerateSignature(userName, passCode);
+
             var queryBuilder = new StringBuilder();
             queryBuilder.Append(
-                $"{SQL.Insert}{Constants.ANSWERS_TABLE_NAME} ({SQL.AnswersFieldList})"
+                $"{SQL.Insert}{Constants.ANSWERS_TABLE_NAME} ({SQL.AnswersFieldList}) {SQL.Values} "
             );
 
-
-            return new OperationResult()
+            foreach (var response in responses)
             {
-                Status = OperationStatus.Success,
-                Message = Constants.ResponseSubmitted
-            };
+                queryBuilder.Append(
+                    $"({SQL.ValuesList(new List<object>() { questId, response.QuestionId, response.Content, signature.Key, signature.Salt })})" +
+                    (responses.IndexOf(response) == responses.Count - 1 ? String.Empty : ", ")
+                );
+            }
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                dataAccessor.ExecuteSqlQuery(queryBuilder.ToString());
+
+                return new OperationResult()
+                {
+                    Status = OperationStatus.Success,
+                    Message = Constants.ResponseSubmittedMsg
+                };
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult() {
+                    Status = OperationStatus.Failed,
+                    Message = ex.Message
+                };
+            }
+        }
+
+        internal static OperationResult VerifyResponse(int questId, string userName, string passCode)
+        {
+            var user = AccountService.GetUser(userName);
+            if (!CryptoService.VerifyPassword(passCode, user.Password))
+            {
+                return new OperationResult()
+                {
+                    Status = OperationStatus.Failed,
+                    Message = Constants.IncorrectPasswordMsg
+                };
+            }     
+
+            try
+            {
+                var answers = GetAnswers(questId, userName, passCode);
+                var questions = GetQuestions(questId);
+
+                if (answers.Count == questions.Count)
+                {
+                    return new OperationResult()
+                    {
+                        Status = OperationStatus.Success,
+                        Message = Constants.VerificationSuccessMsg
+                    };
+                } 
+                else
+                {
+                    return new OperationResult()
+                    {
+                        Status = OperationStatus.Failed,
+                        Message = Constants.VerificationFailedMsg
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult()
+                {
+                    Status = OperationStatus.Failed,
+                    Message = ex.Message
+                };
+            }
+
+        }
+
+        internal static List<Answer> GetAnswers(int questId, string userName, string passCode)
+        {
+            var signature = CryptoService.GenerateSignature(userName, passCode);
+            var questCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.QUEST_QUESTID_FIELD}", RightOperand = questId, Operator = SQL.LogicOperator.Equal };
+            var keyCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.ANSWERS_SIGNATURE_FIELD}", RightOperand = signature.Key, Operator = SQL.LogicOperator.Equal };
+
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Select} " +
+                $"A.{Constants.QUESTIONS_QUESTIONID_FIELD}, " +
+                $"A.{Constants.QUEST_QUESTID_FIELD}, " +
+                $"B.{Constants.QUESTIONS_CONTENT_FIELD}, " +
+                $"A.{Constants.ANSWERS_SIGNATURE_FIELD}" +
+                $" {SQL.From} {Constants.ANSWERS_TABLE_NAME} A {SQL.Join} {Constants.QUESTIONS_TABLE_NAME} B {SQL.On} " +
+                    SQL.SingleCriteria(new SQL.LogicComparison()
+                    {
+                        LeftOperand = $"A.{Constants.QUESTIONS_QUESTIONID_FIELD}",
+                        RightOperand = $"B.{Constants.QUESTIONS_QUESTIONID_FIELD}",
+                        Operator = SQL.LogicOperator.Equal
+                    }) + 
+                $" {SQL.Where} " +
+                    SQL.MultipleCriteria(new Dictionary<SQL.LogicComparison, SQL.CriteriaConnector>() {
+                        { questCompare, SQL.CriteriaConnector.AND },
+                        { keyCompare, SQL.CriteriaConnector.NULL }
+                    })
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var answersTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+                var dataRows = answersTable?.Rows.Count > 0 ? answersTable.Rows : null;
+
+                if (dataRows == null)
+                {
+                    return new List<Answer>();
+                }
+                else
+                {
+                    var answers = new List<Answer>();
+                    foreach (DataRow row in dataRows)
+                    {
+                        answers.Add(new Answer()
+                        {
+                            QuestionId = int.Parse(row[Constants.ANSWERS_QUESTIONID_FIELD].ToString()),
+                            Content = row[Constants.QUESTIONS_CONTENT_FIELD].ToString(),
+                            Response = int.Parse(row[Constants.ANSWERS_ANSWER_FIELD].ToString()) == 0 ? false : true
+                        });
+                    }
+                    return answers;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
