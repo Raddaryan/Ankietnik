@@ -13,8 +13,8 @@
                              <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("Id") %>' />
                              <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("Text") %>' />
                                 <asp:RadioButtonList ID="YesNo" runat="server">
-                                    <asp:ListItem Text="Tak" Value="1" />
-                                    <asp:ListItem Text="Nie" Value="0" />
+                                    <asp:ListItem Text="Tak" Value="true" />
+                                    <asp:ListItem Text="Nie" Value="false" />
                                 </asp:RadioButtonList>
                          </p>
                      </ItemTemplate>
