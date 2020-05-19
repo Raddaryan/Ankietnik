@@ -199,6 +199,65 @@ namespace Ankietnik
             return GetPendingQuestionnairesForUser(user.Id);
         }
 
+        internal static List<Questionnaire> GetCompletedQuestionnairesForUser(int userId)
+        {
+            var questionnaires = new List<Questionnaire>();
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Select}{Constants.QUEST_QUESTID_FIELD}, {SQL.QuestionnaireFieldList}" +
+                $"{SQL.From} {Constants.QUEST_TABLE_NAME} {SQL.Where} " +
+                $"{Constants.QUEST_QUESTID_FIELD} {SQL.Not} {SQL.In} (" +
+                    SQL.Select + Constants.QUEST_QUESTID_FIELD +
+                    $" {SQL.From} {Constants.PENDING_TABLE_NAME} {SQL.Where} " +
+                    SQL.SingleCriteria(new SQL.LogicComparison()
+                    {
+                        LeftOperand = Constants.USERS_USERID_FIELD,
+                        RightOperand = userId,
+                        Operator = SQL.LogicOperator.Equal
+                    }) + ")"
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var userDataTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+                var dataRows = userDataTable?.Rows.Count > 0 ? userDataTable.Rows : null;
+
+                if (dataRows == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    foreach (DataRow row in dataRows)
+                    {
+                        questionnaires.Add(new Questionnaire()
+                        {
+                            Id = int.Parse(row[Constants.QUEST_QUESTID_FIELD].ToString()),
+                            OwnerId = int.Parse(row[Constants.QUEST_OWNERID_FIELD].ToString()),
+                            GroupId = int.Parse(row[Constants.QUEST_GROUPID_FIELD].ToString())
+                        });
+                    }
+
+                    return questionnaires;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        internal static List<Questionnaire> GetCompletedQuestionnairesForUser(string userName)
+        {
+            return GetCompletedQuestionnairesForUser(AccountService.GetUser(userName).Id);
+        }
+
+        internal static List<Questionnaire> GetCompletedQuestionnairesForUser(User user)
+        {
+            return GetCompletedQuestionnairesForUser(user.Id);
+        }
+
         internal static OperationResult CreateQuestionnaire(Questionnaire quest)
         {
             var result = new OperationResult();

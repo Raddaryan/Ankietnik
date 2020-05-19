@@ -33,13 +33,13 @@ namespace Ankietnik
         protected global::System.Web.UI.WebControls.Label labelMessage;
 
         /// <summary>
-        /// Kontrolka ListBoxWypelnij.
+        /// Kontrolka ListWypelnij.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBoxWypelnij;
+        protected global::System.Web.UI.WebControls.DropDownList ListWypelnij;
 
         /// <summary>
         /// Kontrolka ButtonWypelnij.
@@ -51,12 +51,21 @@ namespace Ankietnik
         protected global::System.Web.UI.WebControls.Button ButtonWypelnij;
 
         /// <summary>
-        /// Kontrolka ListBoxSprawdz.
+        /// Kontrolka ListSprawdz.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBoxSprawdz;
+        protected global::System.Web.UI.WebControls.DropDownList ListSprawdz;
+
+        /// <summary>
+        /// Kontrolka ButtonSprawdz.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonSprawdz;
     }
 }

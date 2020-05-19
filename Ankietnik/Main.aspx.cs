@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Ankietnik
@@ -18,26 +13,47 @@ namespace Ankietnik
             }
             else
             {
-                ButtonWypelnij.Visible = false;
-                String userName = "";
-                userName = Session["Name"].ToString();
-                var questionnairesList = QuestionService.GetPendingQuestionnairesForUser(userName);
+                if (!IsPostBack)
+                {
+                    ButtonWypelnij.Enabled = false;
+                    ButtonSprawdz.Enabled = false;
+                    ButtonWypelnij.Visible = false;
+                    ButtonSprawdz.Visible = false;
 
-                ListBoxWypelnij.DataSource = QuestionService.GetArrayListOfIds(questionnairesList);
-                ListBoxWypelnij.DataBind();
+                    var userName = Session["Name"].ToString();
+                    var pendingList = QuestionService.GetPendingQuestionnairesForUser(userName);
+                    var completedList = QuestionService.GetCompletedQuestionnairesForUser(userName);
+
+                    ListWypelnij.DataSource = QuestionService.GetArrayListOfIds(pendingList);
+                    ListWypelnij.DataBind();
+                    ListSprawdz.DataSource = QuestionService.GetArrayListOfIds(completedList);
+                    ListSprawdz.DataBind();
+                }
             }
-
         }
 
 
-        protected void ListBoxWypelnij_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ListWypelnij_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ButtonWypelnij.Enabled = true;
             ButtonWypelnij.Visible = true;
+        }
+
+        protected void ListSprawdz_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ButtonSprawdz.Enabled = true;
+            ButtonSprawdz.Visible = true;
         }
 
         protected void ButtonWypelnij_Click(object sender, EventArgs e)
         {
-            var selectedQuestId = ListBoxWypelnij.SelectedValue;
+            var selectedQuestId = ListWypelnij.SelectedValue;
         }
+
+        protected void ButtonSprawdz_Click(object sender, EventArgs e)
+        {
+            var selectedQuestId = ListSprawdz.SelectedValue;
+        }
+        
     }
 }

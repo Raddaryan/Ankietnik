@@ -15,6 +15,7 @@ namespace Ankietnik
         internal const string Where = "WHERE ";
         internal const string Values = "VALUES";
         internal const string In = "IN ";
+        internal const string Not = "NOT";
 
         internal const string Space = " ";
 
