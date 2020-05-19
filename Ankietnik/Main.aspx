@@ -32,16 +32,24 @@
                     <asp:Label ID="HeaderSprawdźBrak" runat="server" Text="Po wypełnieniu ankiet tutaj sprawdzisz czy otrzymaliśmy Twoje odpowiedzi."></asp:Label>    
                     <asp:Label ID="HeaderSprawdź" runat="server" Text="<h4>Sprawdź wypełnione:</h4>"></asp:Label>            
                     <div class="form-inline">
-                        <asp:DropDownList 
-                            ID="ListSprawdz" 
-                            CssClass="btn btn-secondary"
-                            runat="server"
-                            OnSelectedIndexChanged="ListSprawdz_SelectedIndexChanged"
-                            AutoPostBack="true">
-                        </asp:DropDownList>       
-                        <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-                        <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
-                        <asp:Button ID="ButtonSprawdz" Text="Sprawdź" runat="server" OnClick="ButtonSprawdz_Click" CssClass="btn btn-primary"/>
+                        <div class="form-group mr-2">
+                            <asp:DropDownList 
+                                ID="ListSprawdz" 
+                                CssClass="btn btn-secondary"
+                                runat="server"
+                                OnSelectedIndexChanged="ListSprawdz_SelectedIndexChanged"
+                                AutoPostBack="true">
+                            </asp:DropDownList>  
+                        </div>
+                        <div class="form-group mr-2">
+                            <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+                        </div>
+                        <div class="form-group mr-2">
+                            <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
+                        </div>
+                        <div class="form-group mr-2">
+                            <asp:Button ID="ButtonSprawdz" Text="Sprawdź" runat="server" OnClick="ButtonSprawdz_Click" CssClass="btn btn-primary"/>
+                        </div>
                     </div>
                 </div>
             </div>

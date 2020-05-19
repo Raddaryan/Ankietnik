@@ -19,11 +19,17 @@
                          </p>
                      </ItemTemplate>
                  </asp:Repeater>
-                <div class="form-group">
-                    <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-                    <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
+                <div class="form-inline">
+                    <div class="form-group mr-2">
+                        <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+                    </div>
+                    <div class="form-group mr-2">
+                        <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
+                    </div>
+                    <div class="form-group mr-2">
+                        <asp:Button ID="ButtonWyslijOdp" CssClass="btn btn-primary" Text="Wyślij" runat="server" OnClick="ButtonWyslijOdp_Clik" />
+                    </div>
                 </div>
-                <asp:Button ID="ButtonWyslijOdp" CssClass="btn btn-primary" Text="Wyślij" runat="server" OnClick="ButtonWyslijOdp_Clik" />
             </div>
         </div>
         <div class="col-md-2"></div>
