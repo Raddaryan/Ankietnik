@@ -11,6 +11,11 @@ namespace Ankietnik
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var test = Request.QueryString["test"];
+        }
+
+        protected void ButtonWyslijOdp_Clik(object sender, EventArgs e)
+        {
 
         }
     }

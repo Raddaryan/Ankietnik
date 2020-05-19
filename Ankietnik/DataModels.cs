@@ -32,6 +32,12 @@ namespace Ankietnik
         internal string Content;
     }
 
+    public struct Response
+    {
+        internal int QuestionId;
+        internal bool Content;
+    }
+
     public class Questionnaire
     {
         internal int? Id;

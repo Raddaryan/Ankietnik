@@ -48,6 +48,7 @@ namespace Ankietnik
         protected void ButtonWypelnij_Click(object sender, EventArgs e)
         {
             var selectedQuestId = ListWypelnij.SelectedValue;
+            Response.Redirect($"Complete.aspx?test={selectedQuestId}");
         }
 
         protected void ButtonSprawdz_Click(object sender, EventArgs e)
