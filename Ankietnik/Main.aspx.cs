@@ -15,14 +15,36 @@ namespace Ankietnik
             {
                 if (!IsPostBack)
                 {
-                    ButtonWypelnij.Enabled = false;
-                    ButtonSprawdz.Enabled = false;
-                    ButtonWypelnij.Visible = false;
-                    ButtonSprawdz.Visible = false;
-
                     var userName = Session["Name"].ToString();
                     var pendingList = QuestionService.GetPendingQuestionnairesForUser(userName);
                     var completedList = QuestionService.GetCompletedQuestionnairesForUser(userName);
+
+                    if (pendingList == null)
+                    {
+                        ListWypelnij.Visible = false;
+                        ButtonWypelnij.Enabled = false;
+                        ButtonWypelnij.Visible = false;
+                        HeaderWypelnij.Visible = false;
+                    }
+                    else
+                    {
+                        HeaderWypelnijBrak.Visible = false;
+                    }
+
+                    if (completedList == null)
+                    {
+                        HeaderSprawdź.Visible = false;
+                        ListSprawdz.Visible = false;
+                        ButtonSprawdz.Enabled = false;
+                        ButtonSprawdz.Visible = false;
+                        Label2.Visible = false;
+                        PasswordTextBox.Visible = false;
+                    }
+                    else
+                    {
+                        HeaderSprawdźBrak.Visible = false;
+                    }
+
 
                     ListWypelnij.DataSource = QuestionService.GetArrayListOfIds(pendingList);
                     ListWypelnij.DataBind();

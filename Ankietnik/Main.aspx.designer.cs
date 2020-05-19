@@ -7,13 +7,11 @@
 // </generowany automatycznie>
 //------------------------------------------------------------------------------
 
-namespace Ankietnik
-{
-
-
-    public partial class Main
-    {
-
+namespace Ankietnik {
+    
+    
+    public partial class Main {
+        
         /// <summary>
         /// Kontrolka Message.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Ankietnik
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Message;
-
+        
         /// <summary>
         /// Kontrolka labelMessage.
         /// </summary>
@@ -31,7 +29,25 @@ namespace Ankietnik
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelMessage;
-
+        
+        /// <summary>
+        /// Kontrolka HeaderWypelnijBrak.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label HeaderWypelnijBrak;
+        
+        /// <summary>
+        /// Kontrolka HeaderWypelnij.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label HeaderWypelnij;
+        
         /// <summary>
         /// Kontrolka ListWypelnij.
         /// </summary>
@@ -40,7 +56,7 @@ namespace Ankietnik
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ListWypelnij;
-
+        
         /// <summary>
         /// Kontrolka ButtonWypelnij.
         /// </summary>
@@ -49,7 +65,25 @@ namespace Ankietnik
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonWypelnij;
-
+        
+        /// <summary>
+        /// Kontrolka HeaderSprawdźBrak.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label HeaderSprawdźBrak;
+        
+        /// <summary>
+        /// Kontrolka HeaderSprawdź.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label HeaderSprawdź;
+        
         /// <summary>
         /// Kontrolka ListSprawdz.
         /// </summary>
@@ -58,7 +92,25 @@ namespace Ankietnik
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ListSprawdz;
-
+        
+        /// <summary>
+        /// Kontrolka Label2.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// Kontrolka PasswordTextBox.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+        
         /// <summary>
         /// Kontrolka ButtonSprawdz.
         /// </summary>

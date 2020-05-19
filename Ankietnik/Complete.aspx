@@ -7,7 +7,7 @@
         <div class="col-md-8 py-3">
             <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
             <h4>Wypełnij ankietę:</h4>
-                <asp:Repeater ID="rpt" runat="server" OnItemCommand="rpt_ItemCommand">
+                <asp:Repeater ID="rpt" runat="server">
                      <ItemTemplate>
                          <p>
                              <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("Id") %>' />
