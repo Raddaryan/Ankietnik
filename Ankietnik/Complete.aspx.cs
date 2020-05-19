@@ -11,7 +11,19 @@ namespace Ankietnik
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var test = Request.QueryString["test"];
+            if (Session["Name"] == null)
+            {
+                Response.Redirect($"Login.aspx");
+            }
+            else
+            {
+                var qstring = Request.QueryString["q"];
+                int qint = int.Parse(qstring);
+                var questions = QuestionService.GetQuestions(qint);
+                rpt.DataSource = questions;
+                rpt.DataBind();
+            }
+            
         }
 
         protected void ButtonWyslijOdp_Clik(object sender, EventArgs e)
