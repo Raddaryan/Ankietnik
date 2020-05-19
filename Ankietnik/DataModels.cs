@@ -26,10 +26,10 @@ namespace Ankietnik
         internal int Group;
     }
 
-    public struct Question
+    public class Question
     {
-        internal int Id;
-        internal string Content;
+        public int Id { get; set; }
+        public string Content { get; set; }
     }
 
     public struct Response

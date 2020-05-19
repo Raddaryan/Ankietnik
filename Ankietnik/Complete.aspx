@@ -11,7 +11,7 @@
                      <ItemTemplate>
                          <p>
                              <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("Id") %>' />
-                             <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("Text") %>' />
+                             <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("Content") %>' />
                                 <asp:RadioButtonList ID="YesNo" runat="server">
                                     <asp:ListItem Text="Tak" Value="true" />
                                     <asp:ListItem Text="Nie" Value="false" />
@@ -19,7 +19,11 @@
                          </p>
                      </ItemTemplate>
                  </asp:Repeater>
-                <asp:Button ID="ButtonWyslijOdp" Text="Wyślij" runat="server" OnClick="ButtonWyslijOdp_Clik" />
+                <div class="form-group">
+                    <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+                    <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
+                </div>
+                <asp:Button ID="ButtonWyslijOdp" CssClass="btn btn-primary" Text="Wyślij" runat="server" OnClick="ButtonWyslijOdp_Clik" />
             </div>
         </div>
         <div class="col-md-2"></div>

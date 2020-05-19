@@ -31,7 +31,7 @@
                 <div>
                     <asp:Label ID="HeaderSprawdźBrak" runat="server" Text="Po wypełnieniu ankiet tutaj sprawdzisz czy otrzymaliśmy Twoje odpowiedzi."></asp:Label>    
                     <asp:Label ID="HeaderSprawdź" runat="server" Text="<h4>Sprawdź wypełnione:</h4>"></asp:Label>            
-                    <div class="form-group">
+                    <div class="form-inline">
                         <asp:DropDownList 
                             ID="ListSprawdz" 
                             CssClass="btn btn-secondary"
