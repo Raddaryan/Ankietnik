@@ -23,9 +23,9 @@ namespace Ankietnik
                 var qstring = Request.QueryString["q"];
                 qint = int.Parse(qstring);
                 var userName = Session["Name"].ToString();
-                var questions = QuestionService.VerifyResponse(qint, userName);
-                rpt.DataSource = questions;
-                rpt.DataBind();
+                //var questions = QuestionService.VerifyResponse(qint, userName);
+                //rpt.DataSource = questions;
+                //rpt.DataBind();
             }
         }
 
