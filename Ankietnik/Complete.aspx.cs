@@ -9,6 +9,8 @@ namespace Ankietnik
 {
     public partial class Complete : System.Web.UI.Page
     {
+        int qint; 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Name"] == null)
@@ -18,7 +20,7 @@ namespace Ankietnik
             else
             {
                 var qstring = Request.QueryString["q"];
-                int qint = int.Parse(qstring);
+                qint = int.Parse(qstring);
                 var questions = QuestionService.GetQuestions(qint);
                 rpt.DataSource = questions;
                 rpt.DataBind();
@@ -36,15 +38,14 @@ namespace Ankietnik
                 
                 foreach (RepeaterItem item in rpt.Items)
                 {
-                    answerList.Add(new Response()
-                    {
-                        QuestionId = int.Parse(((HiddenField)item.FindControl("hiddenId")).Value),
-                        Content = Convert.ToBoolean(int.Parse(((RadioButtonList)item.FindControl("YesNo")).SelectedItem.Value))
-                    });
+                    var response = new Response();
+                    response.QuestionId = int.Parse(((HiddenField)item.FindControl("hiddenId")).Value);
+                    response.Content = Convert.ToBoolean(int.Parse(((RadioButtonList)item.FindControl("YesNo")).SelectedItem.Value));
+                    answerList.Add(response);
                 }
             }
 
-            var operationResult = QuestionService.SubmitResponse(answerList, userName);
+            var operationResult = QuestionService.SubmitResponse(qint, answerList, userName, PasswordTextBox.Text);
 
             if (operationResult.Status == OperationStatus.Failed)
             {
