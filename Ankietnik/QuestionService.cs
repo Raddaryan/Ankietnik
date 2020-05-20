@@ -381,11 +381,7 @@ namespace Ankietnik
                 var dataAccessor = DataAccess.Instance;
                 dataAccessor.ExecuteSqlQuery(queryBuilder.ToString());
 
-                return new OperationResult()
-                {
-                    Status = OperationStatus.Success,
-                    Message = Constants.ResponseSubmittedMsg
-                };
+                return CompleteQuestionnaire(questId, userName);
             }
             catch (Exception ex)
             {
@@ -512,6 +508,42 @@ namespace Ankietnik
                         Payload = answers
                     };
                 }
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult()
+                {
+                    Status = OperationStatus.Failed,
+                    Message = ex.Message
+                };
+            }
+        }
+
+        private static OperationResult CompleteQuestionnaire(int questId, string userName)
+        {
+            var userId = AccountService.GetUser(userName).Id;
+            var queryBuilder = new StringBuilder();
+            var userCompare = new SQL.LogicComparison() { LeftOperand = Constants.USERS_USERID_FIELD, RightOperand = userId, Operator = SQL.LogicOperator.Equal };
+            var questCompare = new SQL.LogicComparison() { LeftOperand = Constants.QUEST_QUESTID_FIELD, RightOperand = questId, Operator = SQL.LogicOperator.Equal };
+            queryBuilder.Append(
+                $"{SQL.Delete}{Constants.PENDING_TABLE_NAME} {SQL.Where}" +
+                SQL.MultipleCriteria(new Dictionary<SQL.LogicComparison, SQL.CriteriaConnector>()
+                {
+                    { userCompare, SQL.CriteriaConnector.AND },
+                    { questCompare, SQL.CriteriaConnector.NULL }
+                })
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                dataAccessor.ExecuteSqlQuery(queryBuilder.ToString());
+
+                return new OperationResult()
+                {
+                    Status = OperationStatus.Success,
+                    Message = Constants.ResponseSubmittedMsg
+                };
             }
             catch (Exception ex)
             {

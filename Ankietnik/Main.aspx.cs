@@ -15,6 +15,12 @@ namespace Ankietnik
             {
                 if (!IsPostBack)
                 {
+                    var msg = Request.QueryString["msg"];
+                    if (msg != null && msg == "successSubmission")
+                    {
+                        ShowMessage(Constants.ResponseSubmittedMsg, WarningType.Success, true);
+                    }
+
                     var userName = Session["Name"].ToString();
                     var pendingList = QuestionService.GetPendingQuestionnairesForUser(userName);
                     var completedList = QuestionService.GetCompletedQuestionnairesForUser(userName);
@@ -51,6 +57,10 @@ namespace Ankietnik
                     ListSprawdz.DataSource = QuestionService.GetArrayListOfIds(completedList);
                     ListSprawdz.DataBind();
                 }
+                else
+                {
+                    ShowMessage(string.Empty, WarningType.Success, false);
+                }
             }
         }
 
@@ -77,6 +87,17 @@ namespace Ankietnik
         {
             var selectedQuestId = ListSprawdz.SelectedValue;
         }
-        
+
+        public void ShowMessage(string message, WarningType type, bool visibility)
+        {
+            Panel PanelMessage = HelperService.FindControlRecursive(Page, "Message") as Panel;
+            Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
+
+            labelMessage.Text = message;
+            PanelMessage.CssClass = string.Format("alert alert-{0} alert-dismissable", type.ToString().ToLower());
+            PanelMessage.Attributes.Add("role", "alert");
+            PanelMessage.Visible = visibility;
+        }
+
     }
 }

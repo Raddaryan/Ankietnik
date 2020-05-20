@@ -55,7 +55,7 @@ namespace Ankietnik
             else if (operationResult.Status == OperationStatus.Success)
             {
                 ShowMessage(operationResult.Message, WarningType.Success, true);
-                Response.Redirect("Main.aspx");
+                Response.Redirect($"Main.aspx?msg=successSubmission");
             }
             else
             {
