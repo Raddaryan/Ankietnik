@@ -76,6 +76,7 @@ namespace Ankietnik
         protected void ButtonSprawdz_Click(object sender, EventArgs e)
         {
             var selectedQuestId = ListSprawdz.SelectedValue;
+            Response.Redirect($"Complete.aspx?q={selectedQuestId}");
         }
         
     }
