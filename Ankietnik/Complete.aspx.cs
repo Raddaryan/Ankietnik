@@ -65,7 +65,7 @@ namespace Ankietnik
 
         public void ShowMessage(string message, WarningType type, bool visibility)
         {
-            Panel PanelMessage = FindControl("Message") as Panel;
+            Panel PanelMessage = HelperService.FindControlRecursive(Page, "Message") as Panel;
             Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
 
             labelMessage.Text = message;
