@@ -441,8 +441,18 @@ namespace Ankietnik
 
         }
 
-        internal static List<Answer> GetAnswers(int questId, string userName, string passCode)
+        internal static OperationResult GetAnswers(int questId, string userName, string passCode)
         {
+            var user = AccountService.GetUser(userName);
+            if (!CryptoService.VerifyPassword(passCode, user.Password))
+            {
+                return new OperationResult()
+                {
+                    Status = OperationStatus.Failed,
+                    Message = Constants.IncorrectPasswordMsg
+                };
+            }
+
             var signature = CryptoService.GenerateSignature(userName, passCode);
             var questCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.QUEST_QUESTID_FIELD}", RightOperand = questId, Operator = SQL.LogicOperator.Equal };
             var keyCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.ANSWERS_SIGNATURE_FIELD}", RightOperand = signature.Key, Operator = SQL.LogicOperator.Equal };
@@ -476,7 +486,11 @@ namespace Ankietnik
 
                 if (dataRows == null)
                 {
-                    return new List<Answer>();
+                    return new OperationResult()
+                    {
+                        Status = OperationStatus.Failed,
+                        Message = Constants.GetAnswersFailedMsg
+                    };
                 }
                 else
                 {
@@ -490,12 +504,22 @@ namespace Ankietnik
                             Response = int.Parse(row[Constants.ANSWERS_ANSWER_FIELD].ToString()) == 0 ? false : true
                         });
                     }
-                    return answers;
+
+                    return new OperationResult()
+                    {
+                        Status = OperationStatus.Success,
+                        Message = string.Empty,
+                        Payload = answers
+                    };
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                return new OperationResult()
+                {
+                    Status = OperationStatus.Failed,
+                    Message = ex.Message
+                };
             }
         }
     }

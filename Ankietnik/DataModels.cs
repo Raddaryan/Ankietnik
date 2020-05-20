@@ -15,6 +15,7 @@ namespace Ankietnik
     {
         internal OperationStatus Status;
         internal string Message;
+        internal object Payload;
     }
 
     public class User
