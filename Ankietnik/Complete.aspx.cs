@@ -28,7 +28,48 @@ namespace Ankietnik
 
         protected void ButtonWyslijOdp_Clik(object sender, EventArgs e)
         {
+            var userName = Session["Name"].ToString();
+            var answerList = new List<Response>();
+       
+            if (rpt.Items.Count > 0)
+            {
+                
+                foreach (RepeaterItem item in rpt.Items)
+                {
+                    answerList.Add(new Response()
+                    {
+                        QuestionId = int.Parse(((HiddenField)item.FindControl("hiddenId")).Value),
+                        Content = Convert.ToBoolean(int.Parse(((RadioButtonList)item.FindControl("YesNo")).SelectedItem.Value))
+                    });
+                }
+            }
 
+            var operationResult = QuestionService.SubmitResponse(answerList, userName);
+
+            if (operationResult.Status == OperationStatus.Failed)
+            {
+                ShowMessage(operationResult.Message, WarningType.Danger, true);
+            }
+            else if (operationResult.Status == OperationStatus.Success)
+            {
+                ShowMessage(operationResult.Message, WarningType.Success, true);
+                Response.Redirect("Main.aspx");
+            }
+            else
+            {
+                ShowMessage(operationResult.Message, WarningType.Warning, false);
+            }
+        }
+
+        public void ShowMessage(string message, WarningType type, bool visibility)
+        {
+            Panel PanelMessage = FindControl("Message") as Panel;
+            Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
+
+            labelMessage.Text = message;
+            PanelMessage.CssClass = string.Format("alert alert-{0} alert-dismissable", type.ToString().ToLower());
+            PanelMessage.Attributes.Add("role", "alert");
+            PanelMessage.Visible = visibility;
         }
     }
 }
