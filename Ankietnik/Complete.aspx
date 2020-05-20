@@ -37,6 +37,7 @@
                         <asp:Button ID="ButtonWyslijOdp" CssClass="btn btn-primary" Text="Wyślij" runat="server" OnClick="ButtonWyslijOdp_Clik" />
                     </div>
                 </div>
+                <asp:RequiredFieldValidator runat="server" id="reqPassword" controltovalidate="PasswordTextBox" errormessage="Wpisz swoje hasło" forecolor="Red" Font-Size="10" />
             </div>
         </div>
         <div class="col-md-2"></div>

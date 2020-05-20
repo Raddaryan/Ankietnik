@@ -10,7 +10,7 @@
 namespace Ankietnik {
     
     
-    public partial class Complete {
+    public partial class Check {
         
         /// <summary>
         /// Kontrolka Message.
@@ -40,39 +40,39 @@ namespace Ankietnik {
         protected global::System.Web.UI.WebControls.Repeater rpt;
         
         /// <summary>
-        /// Kontrolka Label2.
+        /// Kontrolka hiddenId.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.HiddenField hiddenId;
         
         /// <summary>
-        /// Kontrolka PasswordTextBox.
+        /// Kontrolka lblQuestion.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+        protected global::System.Web.UI.WebControls.Label lblQuestion;
         
         /// <summary>
-        /// Kontrolka reqPassword.
+        /// Kontrolka lblAnswer.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqPassword;
+        protected global::System.Web.UI.WebControls.Label lblAnswer;
         
         /// <summary>
-        /// Kontrolka ButtonWyslijOdp.
+        /// Kontrolka GoBack.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonWyslijOdp;
+        protected global::System.Web.UI.WebControls.Button GoBack;
     }
 }
