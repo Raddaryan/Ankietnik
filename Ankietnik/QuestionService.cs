@@ -371,7 +371,7 @@ namespace Ankietnik
             foreach (var response in responses)
             {
                 queryBuilder.Append(
-                    $"({SQL.ValuesList(new List<object>() { questId, response.QuestionId, response.Content, signature.Key, signature.Salt })})" +
+                    $"({SQL.ValuesList(new List<object>() { questId, response.QuestionId, response.Content, Convert.ToBase64String(signature.Key), Convert.ToBase64String(signature.Salt) })})" +
                     (responses.IndexOf(response) == responses.Count - 1 ? String.Empty : ", ")
                 );
             }
@@ -410,7 +410,7 @@ namespace Ankietnik
 
             try
             {
-                var answers = GetAnswers(questId, userName, passCode);
+                var answers = (List<Response>)GetAnswers(questId, userName, passCode).Payload;
                 var questions = GetQuestions(questId);
 
                 if (answers.Count == questions.Count)
@@ -455,7 +455,7 @@ namespace Ankietnik
 
             var signature = CryptoService.GenerateSignature(userName, passCode);
             var questCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.QUEST_QUESTID_FIELD}", RightOperand = questId, Operator = SQL.LogicOperator.Equal };
-            var keyCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.ANSWERS_SIGNATURE_FIELD}", RightOperand = signature.Key, Operator = SQL.LogicOperator.Equal };
+            var keyCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.ANSWERS_SIGNATURE_FIELD}", RightOperand = Convert.ToBase64String(signature.Key), Operator = SQL.LogicOperator.Equal };
 
             var queryBuilder = new StringBuilder();
             queryBuilder.Append(

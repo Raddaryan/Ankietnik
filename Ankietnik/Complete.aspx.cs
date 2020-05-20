@@ -9,7 +9,7 @@ namespace Ankietnik
 {
     public partial class Complete : System.Web.UI.Page
     {
-        int qint; 
+        static int qint; 
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,13 +19,15 @@ namespace Ankietnik
             }
             else
             {
-                var qstring = Request.QueryString["q"];
-                qint = int.Parse(qstring);
-                var questions = QuestionService.GetQuestions(qint);
-                rpt.DataSource = questions;
-                rpt.DataBind();
+                if (!IsPostBack)
+                {
+                    var qstring = Request.QueryString["q"];
+                    qint = int.Parse(qstring);
+                    var questions = QuestionService.GetQuestions(qint);
+                    rpt.DataSource = questions;
+                    rpt.DataBind();
+                } 
             }
-            
         }
 
         protected void ButtonWyslijOdp_Clik(object sender, EventArgs e)
@@ -34,13 +36,12 @@ namespace Ankietnik
             var answerList = new List<Response>();
        
             if (rpt.Items.Count > 0)
-            {
-                
+            {  
                 foreach (RepeaterItem item in rpt.Items)
                 {
                     var response = new Response();
                     response.QuestionId = int.Parse(((HiddenField)item.FindControl("hiddenId")).Value);
-                    response.Content = Convert.ToBoolean(int.Parse(((RadioButtonList)item.FindControl("YesNo")).SelectedItem.Value));
+                    response.Content = int.Parse(((RadioButtonList)item.FindControl("YesNo")).SelectedValue);
                     answerList.Add(response);
                 }
             }
