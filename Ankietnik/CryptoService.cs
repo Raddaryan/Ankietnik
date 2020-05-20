@@ -27,11 +27,9 @@ namespace Ankietnik
             }
         }
 
-        internal static void GenerateSignature(string username, string passcode)
+        internal static EncryptedPassword GenerateSignature(string username, string passcode)
         {
-
+            return EncryptPassword(username + passcode);
         }
-
-       
     }
 }

@@ -12,6 +12,7 @@ namespace Ankietnik
 
         internal const string UserNotFoundMsg = "Użytkownik o takim loginie nie istnieje.";
         internal const string IncorrectCredentialsMsg = "Niepoprawny login lub hasło.";
+        internal const string IncorrectPasswordMsg = "Podane hasło jest niepoprawne.";
         internal const string UserAlreadyExistsMsg = "Użytkownik o takim loginie już istnieje.";
         internal const string DataAccessErrorMsg = "Wystąpił błąd przy próbie połączenia z bazą danych.";
         internal const string RegistrationSuccessMsg = "Użytkownik został zarejestrowany.";
@@ -19,8 +20,10 @@ namespace Ankietnik
         internal const string CreateQuestionnaireErrorMsg = "Wystąpił błąd podczas próby zapisu ankiety.";
         internal const string CreateQuestionnaireSuccessMsg = "Ankieta została pomyślnie zapisana.";
 
-        internal const string EmptyResponseList = "Nie można zapisać pustej odpowiedzi.";
-        internal const string ResponseSubmitted = "Odpowiedzi zostały pomyślnie zapisane.";
+        internal const string EmptyResponseListMsg = "Nie można zapisać pustej odpowiedzi.";
+        internal const string ResponseSubmittedMsg = "Odpowiedzi zostały pomyślnie zapisane.";
+        internal const string VerificationFailedMsg = "Weryfikacja integralności odpowiedzi nie powiodła się.";
+        internal const string VerificationSuccessMsg = "Weryfikacja integralności odpowiedzi powiodła się.";
 
         // database constants
         internal const string CONN_STRING = "Data Source=RADEK-XPS13;Initial Catalog=Ankietnik;Integrated Security=True";
@@ -55,6 +58,7 @@ namespace Ankietnik
         // answers
         internal const string ANSWERS_TABLE_NAME = "Answers";
         internal const string ANSWERS_QUESTIONID_FIELD = "QuestionID";
+        internal const string ANSWERS_ANSWER_FIELD = "Answer";
         internal const string ANSWERS_SIGNATURE_FIELD = "Signature";
         internal const string ANSWERS_SALT_FIELD = "Salt";
 

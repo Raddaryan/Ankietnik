@@ -16,11 +16,14 @@ namespace Ankietnik
         internal const string Values = "VALUES";
         internal const string In = "IN ";
         internal const string Not = "NOT";
+        internal const string Count = "COUNT(*)";
+        internal const string Join = "JOIN";
+        internal const string On = "ON";
 
         internal const string Space = " ";
 
         internal enum LogicOperator { Less, LessOrEqual, Equal, NotEqual, GreaterOrEqual, Greater }
-        internal enum CriteriaConnector { AND, OR }
+        internal enum CriteriaConnector { AND, OR, NULL }
 
         internal static readonly Dictionary<LogicOperator, string> LogicOperators = new Dictionary<LogicOperator, string>()
         {
@@ -60,7 +63,11 @@ namespace Ankietnik
 
         internal static readonly string AnswersFieldList = FieldList(new List<string>()
         {
-            Constants.ANSWERS_QUESTIONID_FIELD, Constants.ANSWERS_SIGNATURE_FIELD, Constants.ANSWERS_SALT_FIELD
+            Constants.QUEST_QUESTID_FIELD, 
+            Constants.ANSWERS_QUESTIONID_FIELD, 
+            Constants.ANSWERS_ANSWER_FIELD, 
+            Constants.ANSWERS_SIGNATURE_FIELD, 
+            Constants.ANSWERS_SALT_FIELD
         });
             
 
@@ -99,13 +106,13 @@ namespace Ankietnik
                    $"{(comparison.RightOperand is string ? Quotify(comparison.RightOperand.ToString()) : comparison.RightOperand)} ";
         }
 
-        internal static string MultipleCriteria(Dictionary<LogicComparison, CriteriaConnector?> criteria)
+        internal static string MultipleCriteria(Dictionary<LogicComparison, CriteriaConnector> criteria)
         {
             var sb = new StringBuilder();
             foreach (var kvp in criteria)
             {
                 sb.Append($"{SingleCriteria(kvp.Key)}" +
-                          $"{(kvp.Value == null ? string.Empty : Space + kvp.Value.ToString() + Space)}");
+                          $"{(kvp.Value == CriteriaConnector.NULL ? string.Empty : Space + kvp.Value.ToString() + Space)}");
             }
 
             return sb.ToString();

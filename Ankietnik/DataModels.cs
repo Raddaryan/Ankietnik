@@ -38,6 +38,13 @@ namespace Ankietnik
         internal bool Content;
     }
 
+    public class Answer
+    {
+        public int QuestionId { get; set; }
+        public string Content { get; set; }
+        public bool Response { get; set; }
+    }
+
     public class Questionnaire
     {
         internal int? Id;
