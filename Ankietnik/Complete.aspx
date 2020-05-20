@@ -18,7 +18,7 @@
                          <p>
                              <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("Id") %>' />
                              <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("Content") %>' />
-                                <asp:RadioButtonList ID="YesNo" runat="server">
+                                <asp:RadioButtonList ID="YesNo" runat="server" AutoPostBack="true">
                                     <asp:ListItem Text="Tak" Value="1" />
                                     <asp:ListItem Text="Nie" Value="0" />
                                 </asp:RadioButtonList>

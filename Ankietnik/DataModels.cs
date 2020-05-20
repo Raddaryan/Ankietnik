@@ -15,6 +15,7 @@ namespace Ankietnik
     {
         internal OperationStatus Status;
         internal string Message;
+        internal object Payload;
     }
 
     public class User
@@ -35,7 +36,7 @@ namespace Ankietnik
     public struct Response
     {
         internal int QuestionId;
-        internal bool Content;
+        internal int Content;
     }
 
     public class Answer

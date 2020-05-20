@@ -32,7 +32,7 @@ namespace Ankietnik
             { LogicOperator.Equal, "=" },
             { LogicOperator.NotEqual, "!=" },
             { LogicOperator.GreaterOrEqual, ">=" },
-            { LogicOperator.Greater, ">" },
+            { LogicOperator.Greater, ">" }
         };
 
         internal struct LogicComparison

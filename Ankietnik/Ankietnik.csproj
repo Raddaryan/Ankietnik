@@ -95,6 +95,7 @@
     <Compile Include="DataModels.cs" />
     <Compile Include="CryptoService.cs" />
     <Compile Include="AccountService.cs" />
+    <Compile Include="HelperService.cs" />
     <Compile Include="Questionnaire.aspx.cs">
       <DependentUpon>Questionnaire.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
