@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Check.aspx" />
     <Content Include="Complete.aspx" />
+    <Content Include="MainOwner.aspx" />
     <Content Include="Questionnaire.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Main.aspx" />
@@ -96,6 +97,13 @@
     <Compile Include="CryptoService.cs" />
     <Compile Include="AccountService.cs" />
     <Compile Include="HelperService.cs" />
+    <Compile Include="MainOwner.aspx.cs">
+      <DependentUpon>MainOwner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainOwner.aspx.designer.cs">
+      <DependentUpon>MainOwner.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Questionnaire.aspx.cs">
       <DependentUpon>Questionnaire.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

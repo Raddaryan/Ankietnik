@@ -11,17 +11,21 @@
                     <asp:Label ID="labelMessage" runat="server" />
                 </asp:Panel>
             </div>
-            <div class="form-group mr-2">
-                <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-            </div>
-            <div class="form-group mr-2">
-                <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
-            </div>
-            <div class="form-group mr-2">
-                <asp:Button ID="ButtonSprawdz" Text="Sprawdź" runat="server" OnClick="ButtonSprawdz_Click" CssClass="btn btn-primary"/>
-            </div>
             <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
-            <h4>Twoje odpowiedzi:</h4>
+                <div class="form-inline">
+                    <div class="form-group mr-2">
+                        <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+                    </div>
+                    <div class="form-group mr-2">
+                        <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
+                    </div>
+                    <div class="form-group mr-2">
+                        <asp:Button ID="ButtonSprawdz" Text="Sprawdź" runat="server" OnClick="ButtonSprawdz_Click" CssClass="btn btn-primary"/>
+                    </div>
+                </div>
+                <asp:RequiredFieldValidator runat="server" id="reqPassword" controltovalidate="PasswordTextBox" errormessage="Wpisz swoje hasło" forecolor="Red" Font-Size="10" />
+                <br />
+            <asp:Label ID="HeaderOdpowiedzi" runat="server" Text="<h4>Twoje odpowiedzi:</h4>"></asp:Label>   
                 <asp:Repeater ID="rpt" runat="server">
                      <ItemTemplate>
                          <p>

@@ -10,7 +10,7 @@
 namespace Ankietnik {
     
     
-    public partial class Check {
+    public partial class MainOwner {
         
         /// <summary>
         /// Kontrolka Message.
@@ -31,22 +31,31 @@ namespace Ankietnik {
         protected global::System.Web.UI.WebControls.Label labelMessage;
         
         /// <summary>
-        /// Kontrolka Label2.
+        /// Kontrolka HeaderSprawdźBrak.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label HeaderSprawdźBrak;
         
         /// <summary>
-        /// Kontrolka PasswordTextBox.
+        /// Kontrolka HeaderSprawdź.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+        protected global::System.Web.UI.WebControls.Label HeaderSprawdź;
+        
+        /// <summary>
+        /// Kontrolka ListSprawdz.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ListSprawdz;
         
         /// <summary>
         /// Kontrolka ButtonSprawdz.
@@ -65,32 +74,5 @@ namespace Ankietnik {
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqPassword;
-        
-        /// <summary>
-        /// Kontrolka HeaderOdpowiedzi.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label HeaderOdpowiedzi;
-        
-        /// <summary>
-        /// Kontrolka rpt.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpt;
-        
-        /// <summary>
-        /// Kontrolka GoBack.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GoBack;
     }
 }
