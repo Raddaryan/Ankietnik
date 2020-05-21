@@ -67,6 +67,15 @@ namespace Ankietnik {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqPassword;
         
         /// <summary>
+        /// Kontrolka HeaderTuajOdpowiedzi.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label HeaderTuajOdpowiedzi;
+        
+        /// <summary>
         /// Kontrolka HeaderOdpowiedzi.
         /// </summary>
         /// <remarks>
@@ -83,14 +92,5 @@ namespace Ankietnik {
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpt;
-        
-        /// <summary>
-        /// Kontrolka GoBack.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GoBack;
     }
 }
