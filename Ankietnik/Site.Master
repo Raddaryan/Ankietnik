@@ -22,7 +22,7 @@
         <div>
            <nav class="navbar navbar-expand-sm bg-light justify-content-between navbar-fixed-top">
               <!-- Brand -->
-              <h1>Ankietnik</h1>
+               <asp:HyperLink CssClass="text-body" ID="lnkHome" runat="server" NavigateUrl="~/Main.aspx" Text="<h1>Ankietnik</h1>" />
               <!-- Links -->
               <ul class="navbar-nav navbar-right">
                 <!-- Dropdown -->

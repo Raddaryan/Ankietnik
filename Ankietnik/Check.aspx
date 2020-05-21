@@ -12,19 +12,20 @@
                 </asp:Panel>
             </div>
             <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
-                <div class="form-inline">
-                    <div class="form-group mr-2">
-                        <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+                    <div class="form-inline">
+                        <div class="form-group mr-2">
+                            <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+                        </div>
+                        <div class="form-group mr-2">
+                            <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
+                        </div>
+                        <div class="form-group mr-2">
+                            <asp:Button ID="ButtonSprawdz" Text="Sprawdź" runat="server" OnClick="ButtonSprawdz_Click" CssClass="btn btn-primary"/>
+                        </div>
                     </div>
-                    <div class="form-group mr-2">
-                        <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
-                    </div>
-                    <div class="form-group mr-2">
-                        <asp:Button ID="ButtonSprawdz" Text="Sprawdź" runat="server" OnClick="ButtonSprawdz_Click" CssClass="btn btn-primary"/>
-                    </div>
-                </div>
-                <asp:RequiredFieldValidator runat="server" id="reqPassword" controltovalidate="PasswordTextBox" errormessage="Wpisz swoje hasło" forecolor="Red" Font-Size="10" />
-                <br />
+                    <asp:RequiredFieldValidator runat="server" id="reqPassword" controltovalidate="PasswordTextBox" errormessage="Wpisz swoje hasło" forecolor="Red" Font-Size="10" />
+                    <br />
+            <asp:Label ID="HeaderTuajOdpowiedzi" runat="server" Text="Po wpisaniu hasła tutaj sprawdzisz czy otrzymaliśmy Twoje odpowiedzi."></asp:Label>
             <asp:Label ID="HeaderOdpowiedzi" runat="server" Text="<h4>Twoje odpowiedzi:</h4>"></asp:Label>   
                 <asp:Repeater ID="rpt" runat="server">
                      <ItemTemplate>
@@ -35,7 +36,6 @@
                          </p>
                      </ItemTemplate>
                  </asp:Repeater>
-                <asp:Button ID="GoBack" CssClass="btn btn-primary" Text="Wróć" runat="server" OnClick="GoBack_Clik" />
             </div>
         </div>
         <div class="col-md-2"></div>
