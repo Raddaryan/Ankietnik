@@ -214,6 +214,5 @@ namespace Ankietnik
                 throw;
             }
         }
-
     }
 }

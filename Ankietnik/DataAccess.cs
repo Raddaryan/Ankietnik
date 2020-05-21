@@ -56,6 +56,17 @@ namespace Ankietnik
             return result;
         }
 
+        internal int ExecuteScalar(string sqlQuery)
+        {
+            var cmd = new SqlCommand(sqlQuery, Conn);
+            Conn.Open();
+
+            var result = cmd.ExecuteScalar();
+            Conn.Close();
+
+            return (int)result;
+        }
+
 
         private DataAccess()
         {

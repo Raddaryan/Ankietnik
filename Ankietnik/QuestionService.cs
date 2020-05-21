@@ -514,6 +514,115 @@ namespace Ankietnik
             }
         }
 
+        internal static List<Questionnaire> GetQuestionnairesForOwner(string username)
+        {
+            var questionnaires = new List<Questionnaire>();
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Select}{Constants.QUEST_QUESTID_FIELD}, {SQL.QuestionnaireFieldList}" +
+                $"{SQL.From} {Constants.QUEST_TABLE_NAME} {SQL.Where} " +
+                    SQL.SingleCriteria(new SQL.LogicComparison()
+                    {
+                        LeftOperand = Constants.QUEST_OWNERID_FIELD,
+                        RightOperand = AccountService.GetUser(username).Id,
+                        Operator = SQL.LogicOperator.Equal
+                    })
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var userDataTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+                var dataRows = userDataTable?.Rows.Count > 0 ? userDataTable.Rows : null;
+
+                if (dataRows == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    foreach (DataRow row in dataRows)
+                    {
+                        questionnaires.Add(new Questionnaire()
+                        {
+                            Id = int.Parse(row[Constants.QUEST_QUESTID_FIELD].ToString()),
+                            OwnerId = int.Parse(row[Constants.QUEST_OWNERID_FIELD].ToString()),
+                            GroupId = int.Parse(row[Constants.QUEST_GROUPID_FIELD].ToString())
+                        });
+                    }
+
+                    return questionnaires;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        internal static int GetNumberOfCompletedForQuest(int questId)
+        {
+            return GetTotalNumberForQuest(questId) - GetNumberOfPendingForQuest(questId);
+        }
+
+        private static int GetNumberOfPendingForQuest(int questId)
+        {
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Select} {SQL.Count} {SQL.From} {Constants.PENDING_TABLE_NAME} {SQL.Where} " +
+                    SQL.SingleCriteria(new SQL.LogicComparison()
+                    {
+                        LeftOperand = Constants.QUEST_QUESTID_FIELD,
+                        RightOperand = questId,
+                        Operator = SQL.LogicOperator.Equal
+                    })
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var result = dataAccessor.ExecuteScalar(queryBuilder.ToString());
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private static int GetTotalNumberForQuest(int questId)
+        {
+            var groupId = GetQuestionnaire(questId).GroupId;
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Select} {SQL.Count} {SQL.From} {Constants.USERS_TABLE_NAME} {SQL.Where} " +
+                    SQL.SingleCriteria(new SQL.LogicComparison()
+                    {
+                        LeftOperand = Constants.USERS_GROUP_FIELD,
+                        RightOperand = groupId,
+                        Operator = SQL.LogicOperator.Equal
+                    })
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var result = dataAccessor.ExecuteScalar(queryBuilder.ToString());
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private static bool VerifyOwner(int questId, string username)
+        {
+            var user = AccountService.GetUser(username);
+            return user.Role == Constants.Roles[Constants.Role.Owner] &&
+                   GetQuestionnaire(questId).OwnerId == user.Id;
+        }
+
         private static OperationResult CompleteQuestionnaire(int questId, string userName)
         {
             var userId = AccountService.GetUser(userName).Id;
@@ -549,5 +658,6 @@ namespace Ankietnik
                 };
             }
         }
+
     }
 }
