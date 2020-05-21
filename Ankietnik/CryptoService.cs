@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace Ankietnik
@@ -27,9 +28,13 @@ namespace Ankietnik
             }
         }
 
-        internal static EncryptedPassword GenerateSignature(string username, string passcode)
+        internal static string GenerateSignature(string username, string passcode)
         {
-            return EncryptPassword(username + passcode);
+            var salt = AccountService.GetUser(username).Password.Salt;
+            using (var deriveBytes = new Rfc2898DeriveBytes(username + passcode, salt))
+            {
+                return Convert.ToBase64String(deriveBytes.GetBytes(salt.Length));
+            }
         }
     }
 }

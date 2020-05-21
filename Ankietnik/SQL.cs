@@ -66,8 +66,7 @@ namespace Ankietnik
             Constants.QUEST_QUESTID_FIELD, 
             Constants.ANSWERS_QUESTIONID_FIELD, 
             Constants.ANSWERS_ANSWER_FIELD, 
-            Constants.ANSWERS_SIGNATURE_FIELD, 
-            Constants.ANSWERS_SALT_FIELD
+            Constants.ANSWERS_SIGNATURE_FIELD
         });
             
 

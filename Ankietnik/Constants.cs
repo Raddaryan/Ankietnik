@@ -62,7 +62,6 @@ namespace Ankietnik
         internal const string ANSWERS_QUESTIONID_FIELD = "QuestionID";
         internal const string ANSWERS_ANSWER_FIELD = "Answer";
         internal const string ANSWERS_SIGNATURE_FIELD = "Signature";
-        internal const string ANSWERS_SALT_FIELD = "Salt";
 
         internal enum Role { User, Owner}
         internal static readonly Dictionary<Role, int> Roles = new Dictionary<Role, int>

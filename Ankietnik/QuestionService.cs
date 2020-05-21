@@ -371,7 +371,7 @@ namespace Ankietnik
             foreach (var response in responses)
             {
                 queryBuilder.Append(
-                    $"({SQL.ValuesList(new List<object>() { questId, response.QuestionId, response.Content, Convert.ToBase64String(signature.Key), Convert.ToBase64String(signature.Salt) })})" +
+                    $"({SQL.ValuesList(new List<object>() { questId, response.QuestionId, response.Content, signature })})" +
                     (responses.IndexOf(response) == responses.Count - 1 ? String.Empty : ", ")
                 );
             }
@@ -451,7 +451,7 @@ namespace Ankietnik
 
             var signature = CryptoService.GenerateSignature(userName, passCode);
             var questCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.QUEST_QUESTID_FIELD}", RightOperand = questId, Operator = SQL.LogicOperator.Equal };
-            var keyCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.ANSWERS_SIGNATURE_FIELD}", RightOperand = Convert.ToBase64String(signature.Key), Operator = SQL.LogicOperator.Equal };
+            var keyCompare = new SQL.LogicComparison() { LeftOperand = $"A.{Constants.ANSWERS_SIGNATURE_FIELD}", RightOperand = signature, Operator = SQL.LogicOperator.Equal };
 
             var queryBuilder = new StringBuilder();
             queryBuilder.Append(
@@ -459,15 +459,10 @@ namespace Ankietnik
                 $"A.{Constants.QUESTIONS_QUESTIONID_FIELD}, " +
                 $"A.{Constants.QUEST_QUESTID_FIELD}, " +
                 $"B.{Constants.QUESTIONS_CONTENT_FIELD}, " +
-                $"A.{Constants.ANSWERS_SIGNATURE_FIELD}" +
-                $" {SQL.From} {Constants.ANSWERS_TABLE_NAME} A {SQL.Join} {Constants.QUESTIONS_TABLE_NAME} B {SQL.On} " +
-                    SQL.SingleCriteria(new SQL.LogicComparison()
-                    {
-                        LeftOperand = $"A.{Constants.QUESTIONS_QUESTIONID_FIELD}",
-                        RightOperand = $"B.{Constants.QUESTIONS_QUESTIONID_FIELD}",
-                        Operator = SQL.LogicOperator.Equal
-                    }) + 
-                $" {SQL.Where} " +
+                $"A.{Constants.ANSWERS_SIGNATURE_FIELD}, " +
+                $"A.{Constants.ANSWERS_ANSWER_FIELD} " +
+                $"{SQL.From} {Constants.ANSWERS_TABLE_NAME} A {SQL.Join} {Constants.QUESTIONS_TABLE_NAME} B {SQL.On} " +
+                $"A.{Constants.QUESTIONS_QUESTIONID_FIELD} = B.{Constants.QUESTIONS_QUESTIONID_FIELD} {SQL.Where} " +
                     SQL.MultipleCriteria(new Dictionary<SQL.LogicComparison, SQL.CriteriaConnector>() {
                         { questCompare, SQL.CriteriaConnector.AND },
                         { keyCompare, SQL.CriteriaConnector.NULL }
@@ -495,7 +490,7 @@ namespace Ankietnik
                     {
                         answers.Add(new Answer()
                         {
-                            QuestionId = int.Parse(row[Constants.ANSWERS_QUESTIONID_FIELD].ToString()),
+                            QuestionId = int.Parse(row[Constants.QUESTIONS_QUESTIONID_FIELD].ToString()),
                             Content = row[Constants.QUESTIONS_CONTENT_FIELD].ToString(),
                             Response = int.Parse(row[Constants.ANSWERS_ANSWER_FIELD].ToString()) == 0 ? false : true
                         });

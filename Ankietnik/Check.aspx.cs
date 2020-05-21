@@ -10,7 +10,7 @@ namespace Ankietnik
     public partial class Check : System.Web.UI.Page
     {
 
-        int qint;
+        static int qint;
 
         protected void Page_Load(object sender, EventArgs e)
         {

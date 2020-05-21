@@ -29,7 +29,7 @@
                 <asp:Repeater ID="rpt" runat="server">
                      <ItemTemplate>
                          <p>
-                             <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("Id") %>' />
+                             <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("QuestionId") %>' />
                              <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("Content") %>' />
                              <asp:Label ID="lblAnswer" CssClass="ml-5" runat="server" Text='<%# Eval("Response") %>' />
                          </p>
