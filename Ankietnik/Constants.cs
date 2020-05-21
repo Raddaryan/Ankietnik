@@ -26,6 +26,7 @@ namespace Ankietnik
         internal const string VerificationSuccessMsg = "Weryfikacja integralności odpowiedzi powiodła się.";
         internal const string GetAnswersFailedMsg = "Brak odpowiedzi użytkownika na tę ankietę.";
         internal const string GetAnswersSuccessMsg = "Pobieranie odpowiedzi zakończone pomyślnie.";
+        internal const string UserNotOwnerMsg = "Użytkownik nie jest właścicielem tej ankiety.";
 
         // database constants
         internal const string CONN_STRING = "Data Source=RADEK-XPS13;Initial Catalog=Ankietnik;Integrated Security=True";
