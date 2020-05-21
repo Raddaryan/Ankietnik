@@ -23,9 +23,6 @@ namespace Ankietnik
                 var qstring = Request.QueryString["q"];
                 qint = int.Parse(qstring);
                 var userName = Session["Name"].ToString();
-                //var questions = QuestionService.VerifyResponse(qint, userName);
-                //rpt.DataSource = questions;
-                //rpt.DataBind();
             }
         }
 
@@ -33,5 +30,12 @@ namespace Ankietnik
         {
             Response.Redirect("Main.aspx");
         }
+
+        protected void ButtonSprawdz_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

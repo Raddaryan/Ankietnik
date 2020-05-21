@@ -43,8 +43,6 @@ namespace Ankietnik
                         ListSprawdz.Visible = false;
                         ButtonSprawdz.Enabled = false;
                         ButtonSprawdz.Visible = false;
-                        Label2.Visible = false;
-                        PasswordTextBox.Visible = false;
                     }
                     else
                     {
@@ -86,7 +84,7 @@ namespace Ankietnik
         protected void ButtonSprawdz_Click(object sender, EventArgs e)
         {
             var selectedQuestId = ListSprawdz.SelectedValue;
-            Response.Redirect($"Complete.aspx?q={selectedQuestId}");
+            Response.Redirect($"Check.aspx?q={selectedQuestId}");
         }
 
         public void ShowMessage(string message, WarningType type, bool visibility)

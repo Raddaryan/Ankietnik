@@ -11,6 +11,15 @@
                     <asp:Label ID="labelMessage" runat="server" />
                 </asp:Panel>
             </div>
+            <div class="form-group mr-2">
+                <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
+            </div>
+            <div class="form-group mr-2">
+                <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
+            </div>
+            <div class="form-group mr-2">
+                <asp:Button ID="ButtonSprawdz" Text="Sprawdź" runat="server" OnClick="ButtonSprawdz_Click" CssClass="btn btn-primary"/>
+            </div>
             <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
             <h4>Twoje odpowiedzi:</h4>
                 <asp:Repeater ID="rpt" runat="server">
@@ -18,7 +27,7 @@
                          <p>
                              <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("Id") %>' />
                              <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("Content") %>' />
-                             <asp:Label ID="lblAnswer" CssClass="ml-5" runat="server" Text=<em>'<%# Eval("Content") %>'</em> />
+                             <asp:Label ID="lblAnswer" CssClass="ml-5" runat="server" Text='<%# Eval("Content") %>' />
                          </p>
                      </ItemTemplate>
                  </asp:Repeater>
