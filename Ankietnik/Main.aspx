@@ -42,16 +42,9 @@
                             </asp:DropDownList>  
                         </div>
                         <div class="form-group mr-2">
-                            <asp:Label ID="Label2" runat="server" Text="Hasło: "></asp:Label>
-                        </div>
-                        <div class="form-group mr-2">
-                            <asp:TextBox ID="PasswordTextBox" CssClass="form-control" runat="server" TextMode="Password" ValidateRequestMode="Enabled"></asp:TextBox>
-                        </div>
-                        <div class="form-group mr-2">
                             <asp:Button ID="ButtonSprawdz" Text="Sprawdź" runat="server" OnClick="ButtonSprawdz_Click" CssClass="btn btn-primary"/>
                         </div>
                     </div>
-                    <asp:RequiredFieldValidator runat="server" id="reqPassword" controltovalidate="PasswordTextBox" errormessage="Wpisz swoje hasło" forecolor="Red" Font-Size="10" />
                 </div>
             </div>
         </div>

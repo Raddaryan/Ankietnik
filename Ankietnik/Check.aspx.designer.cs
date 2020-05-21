@@ -7,11 +7,13 @@
 // </generowany automatycznie>
 //------------------------------------------------------------------------------
 
-namespace Ankietnik {
-    
-    
-    public partial class Check {
-        
+namespace Ankietnik
+{
+
+
+    public partial class Check
+    {
+
         /// <summary>
         /// Kontrolka Message.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Ankietnik {
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Message;
-        
+
         /// <summary>
         /// Kontrolka labelMessage.
         /// </summary>
@@ -29,7 +31,34 @@ namespace Ankietnik {
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelMessage;
-        
+
+        /// <summary>
+        /// Kontrolka Label2.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// Kontrolka PasswordTextBox.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+
+        /// <summary>
+        /// Kontrolka ButtonSprawdz.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonSprawdz;
+
         /// <summary>
         /// Kontrolka rpt.
         /// </summary>
@@ -38,34 +67,7 @@ namespace Ankietnik {
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpt;
-        
-        /// <summary>
-        /// Kontrolka hiddenId.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenId;
-        
-        /// <summary>
-        /// Kontrolka lblQuestion.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuestion;
-        
-        /// <summary>
-        /// Kontrolka lblAnswer.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAnswer;
-        
+
         /// <summary>
         /// Kontrolka GoBack.
         /// </summary>
