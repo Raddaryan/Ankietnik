@@ -22,6 +22,7 @@ namespace Ankietnik
             {
                 if (!IsPostBack)
                 {
+                    HeaderOdpowiedzi.Visible = false;
                     var qstring = Request.QueryString["q"];
                     qint = int.Parse(qstring);
                 } 
@@ -32,10 +33,6 @@ namespace Ankietnik
             }
         }
 
-        protected void GoBack_Clik(object sender, EventArgs e)
-        {
-            Response.Redirect("Main.aspx");
-        }
 
         protected void ButtonSprawdz_Click(object sender, EventArgs e)
         {
@@ -47,6 +44,8 @@ namespace Ankietnik
             }
             else
             {
+                HeaderTuajOdpowiedzi.Visible = false;
+                HeaderOdpowiedzi.Visible = true;
                 rpt.DataSource = result.Payload;
                 rpt.DataBind();
             }
