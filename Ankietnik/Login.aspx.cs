@@ -33,7 +33,16 @@ namespace Ankietnik
             {
                 ShowMessage(operationResult.Message, WarningType.Success, true);
                 Session["Name"] = UsernameTextBox.Text;
-                Response.Redirect("Main.aspx");
+
+                if (AccountService.GetUser(UsernameTextBox.Text).Role == 0)
+                {
+                    Response.Redirect("Main.aspx");
+                }
+                else
+                {
+                    Response.Redirect("MainOwner.aspx");
+                }
+                
             }
             else
             {
