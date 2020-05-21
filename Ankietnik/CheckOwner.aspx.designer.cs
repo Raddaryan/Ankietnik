@@ -85,13 +85,13 @@ namespace Ankietnik {
         protected global::System.Web.UI.WebControls.Label HeaderKtoNieWypelnil;
         
         /// <summary>
-        /// Kontrolka rptPending.
+        /// Kontrolka KtoNieWypelnil.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPending;
+        protected global::System.Web.UI.WebControls.Label KtoNieWypelnil;
         
         /// <summary>
         /// Kontrolka HeaderWszyscyWypelnili.

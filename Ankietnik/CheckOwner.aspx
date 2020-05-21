@@ -30,16 +30,8 @@
                      </ItemTemplate>
                  </asp:Repeater>
             <asp:Label ID="HeaderKtoNieWypelnil" runat="server" Text="<h4>Lista oczekujących na wypełnienie:</h4>"></asp:Label> 
-                <asp:Repeater ID="rptPending" runat="server">
-                     <ItemTemplate>
-                         <p>
-                             <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("UserId") %>' />
-                             <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("UserName") %>' />
-                             <asp:Label ID="semicolon" runat="server" Text=";" />
-                         </p>
-                     </ItemTemplate>
-                 </asp:Repeater>
-            <asp:Label ID="HeaderWszyscyWypelnili" runat="server" Text="Wszystkie osoby wypełniły swoje ankiety."></asp:Label> 
+                <asp:Label ID="KtoNieWypelnil" runat="server" Text=""></asp:Label> 
+                <asp:Label ID="HeaderWszyscyWypelnili" runat="server" Text="Wszystkie osoby wypełniły swoje ankiety."></asp:Label> 
             </div>
         </div>
         <div class="col-md-2"></div>
