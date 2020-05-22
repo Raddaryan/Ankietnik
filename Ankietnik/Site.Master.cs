@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// MasterPage - element nagłówka z odnośnikiem do strony głównej oraz możliwością wylogowania.
+    /// </summary>
     public partial class Site : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)

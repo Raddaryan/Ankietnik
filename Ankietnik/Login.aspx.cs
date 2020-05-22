@@ -4,6 +4,9 @@ using System.Web.UI.WebControls;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Strona logowania z walidacją pól i możliwością przekierowania do strony rejestracji.
+    /// </summary>
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

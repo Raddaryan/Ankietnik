@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Klasa zwierająca komunikaty błędów oraz stałe wartości (np. nazwy pól w tabelach bazy danych).
+    /// </summary>
     internal static class Constants
     {
         internal const int DEFAULT_SALT_SIZE = 20;

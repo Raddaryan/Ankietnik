@@ -7,6 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Strona wyświetlające listę odpowiedzi na ankietę z wynikami, ilość osób, które odpowiedziały na ankietę oraz listę tych użytkowników, którzy jeszcze nie odpowiedzieli. 
+    /// Odpowiedzi zostaną pobrane z bazy danych i wyświetlone dopiero po weryfikajcji hasłem i rozszyfrowaniu podpisu.
+    /// </summary>
     public partial class CheckOwner : System.Web.UI.Page
     {
         static int qint;

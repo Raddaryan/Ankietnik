@@ -71,7 +71,6 @@
     <Content Include="CheckOwner.aspx" />
     <Content Include="Complete.aspx" />
     <Content Include="MainOwner.aspx" />
-    <Content Include="Questionnaire.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Main.aspx" />
     <Content Include="Register.aspx" />
@@ -111,13 +110,6 @@
     </Compile>
     <Compile Include="MainOwner.aspx.designer.cs">
       <DependentUpon>MainOwner.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Questionnaire.aspx.cs">
-      <DependentUpon>Questionnaire.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Questionnaire.aspx.designer.cs">
-      <DependentUpon>Questionnaire.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

@@ -3,6 +3,10 @@ using System.Web.UI.WebControls;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Strona główna - wersja dla użytkowników z rolą uczestników. Wyświetla listę ankiet przypisanych do wypełnienia z możliwością przekierowania do strony 'Complete' w celu wypełnienia
+    /// oraz listę wypełnionych ankiet z możliwością przekierwoania do strony 'Check' w celu sprawdzenia udzielonych odpowiedzi.
+    /// </summary>
     public partial class Main : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

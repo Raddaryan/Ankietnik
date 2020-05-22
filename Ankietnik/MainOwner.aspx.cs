@@ -2,6 +2,10 @@
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Strona główna - wersja dla użytkowników z rolą właściciela ankiet. Wyświetla listę ankiet, których właścicielem jest zalogowany użytkownik
+    /// z możliwością przekierowania do strony 'CheckOwner' w celu sprawdzenia wyników oraz listy użytkowników, którzy nie odpowiedzieli na ankietę.
+    /// </summary>
     public partial class MainOwner : System.Web.UI.Page
     {
         static string username;

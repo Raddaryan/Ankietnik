@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Klasa zwierająca funkcje kontroli kont użytkowników oraz pozwalająca na dostęp do informacji o nich.
+    /// </summary>
     internal static class AccountService
     {
         internal static OperationResult Login(string userName, string password)

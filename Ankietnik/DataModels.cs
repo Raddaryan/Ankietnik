@@ -11,6 +11,10 @@ namespace Ankietnik
         internal byte[] Key;
     }
 
+    /// <summary>
+    /// Obiekt do komunikacji backend-frontend.
+    /// Status przyjmuje wartości Success (1) lub Failed (0)
+    /// </summary>
     public struct OperationResult
     {
         internal OperationStatus Status;
@@ -33,12 +37,18 @@ namespace Ankietnik
         public string Content { get; set; }
     }
 
+    /// <summary>
+    /// Obiekt reprezentujący odpowiedź na pytanie w ankiecie służący do zapisywania odpowiedzi do bazy danych.
+    /// </summary>
     public struct Response
     {
         internal int QuestionId;
         internal int Content;
     }
 
+    /// <summary>
+    /// Obiekt reprezentujący odpowiedź na pytanie w ankiecie służący do uzyskiwania listy odpowiedzi z bazy danych i wyświetlanie ich.
+    /// </summary>
     public class Answer
     {
         public int QuestionId { get; set; }
@@ -46,6 +56,9 @@ namespace Ankietnik
         public bool Response { get; set; }
     }
 
+    /// <summary>
+    /// Obiekt reprezentujący pytanie oraz ilość twierdzących odpowiedzi jaka wpłyneła na nie do tej pory.
+    /// </summary>
     public class Score
     {
         public int QuestionId { get; set; }
@@ -54,6 +67,9 @@ namespace Ankietnik
 
     }
 
+    /// <summary>
+    /// Obiekt reprezentujący ankietę wraz z listą pytań.
+    /// </summary>
     public class Questionnaire
     {
         internal int? Id;

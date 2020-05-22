@@ -7,6 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Strona wyświetlające listę odpowiedzi udzielonych na ankietę przez użytkownika. 
+    /// Odpowiedzi zostaną pobrane z bazy danych i wyświetlone dopiero po weryfikajcji hasłem i rozszyfrowaniu podpisu.
+    /// </summary>
     public partial class Check : System.Web.UI.Page
     {
 

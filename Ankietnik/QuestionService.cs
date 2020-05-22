@@ -6,8 +6,14 @@ using System.Text;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Klasa zawirająca metody pozwalające na dostęp do danych związanych z ankietami i pytaniami.
+    /// </summary>
     public static class QuestionService
     {
+        /// <summary>
+        /// Zwraca obiekt ankiety (Questionnaire) dla podanego ID.
+        /// </summary>
         internal static Questionnaire GetQuestionnaire(int questId)
         {
             var queryBuilder = new StringBuilder();
@@ -49,6 +55,9 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Zwraca listę pytań należących do ankiety o podanym ID.
+        /// </summary>
         internal static List<Question> GetQuestions(int questId)
         {
             var questions = new List<Question>();
@@ -94,6 +103,9 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Zwraca listę ankiet należących do grupy o podanym ID.
+        /// </summary>
         internal static List<Questionnaire> GetQuestionnairesForGroup(int groupId)
         {
             var questionnaires = new List<Questionnaire>();
@@ -140,6 +152,9 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Zwraca listę ankiet, które nadal oczekują na odpowiedż użytkownika o podanym ID.
+        /// </summary>
         internal static List<Questionnaire> GetPendingQuestionnairesForUser(int userId)
         {
             var questionnaires = new List<Questionnaire>();
@@ -189,16 +204,25 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Zwraca listę ankiet, które nadal oczekują na odpowiedż użytkownika o podanej nazwie.
+        /// </summary>
         internal static List<Questionnaire> GetPendingQuestionnairesForUser(string userName)
         {
             return GetPendingQuestionnairesForUser(AccountService.GetUser(userName).Id);
         }
 
+        /// <summary>
+        /// Zwraca listę ankiet, które nadal oczekują na odpowiedż danego użytkownika.
+        /// </summary>
         internal static List<Questionnaire> GetPendingQuestionnairesForUser(User user)
         {
             return GetPendingQuestionnairesForUser(user.Id);
         }
 
+        /// <summary>
+        /// Zwraca listę ankiet, które zostały już wypełnione przez użytkownika o podanym ID.
+        /// </summary>
         internal static List<Questionnaire> GetCompletedQuestionnairesForUser(int userId)
         {
             var questionnaires = new List<Questionnaire>();
@@ -248,16 +272,26 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Zwraca listę ankiet, które zostały już wypełnione przez użytkownika o podanej nazwie.
+        /// </summary>
         internal static List<Questionnaire> GetCompletedQuestionnairesForUser(string userName)
         {
             return GetCompletedQuestionnairesForUser(AccountService.GetUser(userName).Id);
         }
 
+        /// <summary>
+        /// Zwraca listę ankiet, które zostały już wypełnione przez danego użytkownika.
+        /// </summary>
         internal static List<Questionnaire> GetCompletedQuestionnairesForUser(User user)
         {
             return GetCompletedQuestionnairesForUser(user.Id);
         }
 
+        /// <summary>
+        /// Dodaje ankietę do tabeli 'Questionnaires', dodaje listę pytań do tabeli 'Questions' 
+        /// oraz dodaje wpisy do tabeli 'Pending' dla wszystkich użytkowników należących do przypisanej grupy.
+        /// </summary>
         internal static OperationResult CreateQuestionnaire(Questionnaire quest)
         {
             var result = new OperationResult();
@@ -327,6 +361,9 @@ namespace Ankietnik
             return result;
         }
 
+        /// <summary>
+        /// Metoda pomocnicza zwracająca ArrayList numerów ID dla podanej listy ankiet. Używana do powiązania z DropDownList w 'Main', 'MainOwner', 'Check' i 'CheckOwner'
+        /// </summary>
         internal static ArrayList GetArrayListOfIds(List<Questionnaire> quests)
         {
             var list = new ArrayList();
@@ -341,6 +378,9 @@ namespace Ankietnik
             return list;
         }
 
+        /// <summary>
+        /// Zapisuje odpowiedzi użytkownika na bazie danych podpisane zaszyfrowanym podpisem po uprzedniej weryfikacji hasłem.
+        /// </summary>
         internal static OperationResult SubmitResponse(int questId, List<Response> responses, string userName, string passCode)
         {
             if (responses == null || responses.Count == 0)
@@ -392,6 +432,9 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Sprawdza czy odpowiedzi do podanej ankiety zapisane w bazie danych nie zostały usunięte lub zmodyfikowane.
+        /// </summary>
         internal static OperationResult VerifyResponse(int questId, string userName, string passCode)
         {
             var user = AccountService.GetUser(userName);
@@ -437,6 +480,9 @@ namespace Ankietnik
 
         }
 
+        /// <summary>
+        /// Zwraca listę odpowiedzi na podaną ankietę przesłane przez podanego użytkownika, po uprzedniej weryfikacji hasłem.
+        /// </summary>
         internal static OperationResult GetAnswers(int questId, string userName, string passCode)
         {
             var user = AccountService.GetUser(userName);
@@ -514,6 +560,9 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Zwraca listę ankiet stworzonych przez podanego użytkownika z rolą własciciela.
+        /// </summary>
         internal static List<Questionnaire> GetQuestionnairesForOwner(string username)
         {
             var questionnaires = new List<Questionnaire>();
@@ -560,11 +609,17 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Zwraca liczbę osób, które dotychczas udzieliły odpowieczi na podaną ankietę.
+        /// </summary>
         internal static int GetNumberOfCompletedForQuest(int questId)
         {
             return GetTotalNumberForQuest(questId) - GetNumberOfPendingForQuest(questId);
         }
 
+        /// <summary>
+        /// Zwraca listę nazw użytkowników, którzy dotychczas nie udzielili odpowiedzi na podaną ankietę.
+        /// </summary>
         internal static string GetListOfUsersPendingForQuest(int questId)
         {
             var queryBuilder = new StringBuilder();
@@ -607,6 +662,9 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Zwraca listę pytań należących do podanej ankiety wraz z wynikiem (ilość odpowiedzi pozytywnych).
+        /// </summary>
         internal static List<Score> GetScoresForQuest(int questId)
         {
             var queryBuilder = new StringBuilder();
@@ -658,6 +716,10 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Pomocnicza metoda zwracająca liczbę osób, które dotychczas nie udzieliły odpowiedzi na podaną ankietę.
+        /// Używana do obliczania liczby osób zwracanej w 'GetNumberOfCompletedForQuest'.
+        /// </summary>
         private static int GetNumberOfPendingForQuest(int questId)
         {
             var queryBuilder = new StringBuilder();
@@ -683,6 +745,10 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Pomocnicza metoda zwracająca całkowitą liczbę osób, do których podana ankieta została przypisana.
+        /// Używana do obliczania liczby osób zwracanej w 'GetNumberOfCompletedForQuest'.
+        /// </summary>
         private static int GetTotalNumberForQuest(int questId)
         {
             var groupId = GetQuestionnaire(questId).GroupId;
@@ -709,6 +775,9 @@ namespace Ankietnik
             }
         }
 
+        /// <summary>
+        /// Pomocnicza metoda sprawdzająca czy użytkownik o podanej nazwiejest właścicielem podanej ankiety.
+        /// </summary>
         private static bool VerifyOwner(int questId, string username)
         {
             var user = AccountService.GetUser(username);
@@ -716,6 +785,9 @@ namespace Ankietnik
                    GetQuestionnaire(questId).OwnerId == user.Id;
         }
 
+        /// <summary>
+        /// Pomocnicza metoda wywoływana w 'SubmitResponse' usuwająca wpis dla podanej ankiety i podanego użytkownika z tabeli 'Pending'.
+        /// </summary>
         private static OperationResult CompleteQuestionnaire(int questId, string userName)
         {
             var userId = AccountService.GetUser(userName).Id;

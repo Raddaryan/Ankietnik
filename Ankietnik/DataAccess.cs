@@ -3,6 +3,9 @@ using System.Data.SqlClient;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Klasa pomocnicza zawierające generyczne metody komunikacji z bazą danych (wykonywanie zapytań, łączenie z bazą itp.).
+    /// </summary>
     internal class DataAccess
     {
         private SqlConnection _conn;
