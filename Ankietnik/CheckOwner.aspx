@@ -12,11 +12,11 @@
                 </asp:Panel>
             </div>
             <div class="container px-3 py-3 border" style="background-color:whitesmoke;">
-            <asp:Label ID="HeaderNieMaOdp" runat="server" Text="Niestety Nie Otrzymalismy jeszcze żadnych odpowiedzi na tę ankietę."></asp:Label>
+            <asp:Label ID="HeaderNieMaOdp" runat="server" Text="Niestety nie otrzymalismy jeszcze żadnych odpowiedzi na tę ankietę.<br />"></asp:Label>
             <asp:Label ID="HeaderLiczbaOdpOwner" runat="server" Text="<h4>Liczba wypełnionych ankiet:</h4>"></asp:Label>
                 <asp:Label ID="lblLiczbaWypelnionych" runat="server" Text=""></asp:Label>
             <br />
-            <asp:Label ID="HeaderWynikiOwner" runat="server" Text="<h4>Wyniki Ankiet:</h4>"></asp:Label>  
+            <asp:Label ID="HeaderWynikiOwner" runat="server" Text="<br /><h4>Wyniki Ankiet:</h4>"></asp:Label>  
                 <asp:Repeater ID="rpt" runat="server">
                      <ItemTemplate>
                          <p>
@@ -28,7 +28,8 @@
                          </p>
                      </ItemTemplate>
                  </asp:Repeater>
-            <asp:Label ID="HeaderKtoNieWypelnil" runat="server" Text="<h4>Lista oczekujących na wypełnienie:</h4>"></asp:Label> 
+            <br />
+                <asp:Label ID="HeaderKtoNieWypelnil" runat="server" Text="<h4>Lista oczekujących na wypełnienie:</h4>"></asp:Label> 
                 <asp:Label ID="KtoNieWypelnil" runat="server" Text=""></asp:Label> 
                 <asp:Label ID="HeaderWszyscyWypelnili" runat="server" Text="Wszystkie osoby wypełniły swoje ankiety."></asp:Label> 
             </div>
