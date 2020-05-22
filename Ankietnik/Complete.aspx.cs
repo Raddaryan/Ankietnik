@@ -7,6 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace Ankietnik
 {
+    /// <summary>
+    /// Strona wyświetlająca listę pytań dla danej ankiety i pozwalająca zaznaczyć użytkownikowi odpowiedzi oraz po uprzedniej weryfikacji hasłem i wygenerowaniu
+    /// zaszyfrowanego podpisu, zapisać je do bazy danych.
+    /// </summary>
     public partial class Complete : System.Web.UI.Page
     {
         static int qint; 
