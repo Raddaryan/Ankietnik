@@ -19,6 +19,7 @@ namespace Ankietnik
         internal const string Count = "COUNT(*)";
         internal const string Join = "JOIN";
         internal const string On = "ON";
+        internal const string GroupBy = "GROUP BY";
 
         internal const string Space = " ";
 

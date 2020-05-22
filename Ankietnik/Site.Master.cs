@@ -14,6 +14,12 @@ namespace Ankietnik
             if (Session["Name"] == null)
             {
                 Response.Redirect($"Login.aspx");
+            } 
+            else
+            {
+                lnkHome.NavigateUrl = AccountService.GetUser(Session["Name"].ToString()).Role == Constants.Roles[Constants.Role.Owner] ?
+                                      "~/MainOwner.aspx" :
+                                      "~/Main.aspx";
             }
         }
 

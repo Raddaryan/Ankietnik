@@ -46,6 +46,14 @@ namespace Ankietnik
         public bool Response { get; set; }
     }
 
+    public class Score
+    {
+        public int QuestionId { get; set; }
+        public string Content { get; set; }
+        public int Result { get; set; }
+
+    }
+
     public class Questionnaire
     {
         internal int? Id;

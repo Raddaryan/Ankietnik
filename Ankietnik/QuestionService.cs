@@ -565,6 +565,99 @@ namespace Ankietnik
             return GetTotalNumberForQuest(questId) - GetNumberOfPendingForQuest(questId);
         }
 
+        internal static string GetListOfUsersPendingForQuest(int questId)
+        {
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Select} B.{Constants.USERS_USERNAME_FIELD} " +
+                $"{SQL.From} {Constants.PENDING_TABLE_NAME} A {SQL.Join} {Constants.USERS_TABLE_NAME} B {SQL.On} " +
+                $"A.{Constants.USERS_USERID_FIELD} = B.{Constants.USERS_USERID_FIELD} {SQL.Where} " +
+                    SQL.SingleCriteria(new SQL.LogicComparison()
+                    {
+                        LeftOperand = $"A.{Constants.QUEST_QUESTID_FIELD}",
+                        RightOperand = questId,
+                        Operator = SQL.LogicOperator.Equal
+                    })
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var answersTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+                var dataRows = answersTable?.Rows.Count > 0 ? answersTable.Rows : null;
+
+                if (dataRows == null)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    var userList = new StringBuilder();
+                    foreach (DataRow row in dataRows)
+                    {
+                        userList.Append($"{row[0]}{(dataRows.IndexOf(row) == dataRows.Count - 1 ? string.Empty : ", ")}");
+                    }
+
+                    return userList.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
+
+        internal static List<Score> GetScoresForQuest(int questId)
+        {
+            var queryBuilder = new StringBuilder();
+            queryBuilder.Append(
+                $"{SQL.Select} " +
+                $"A.{Constants.QUESTIONS_QUESTIONID_FIELD}, " +
+                $"B.{Constants.QUESTIONS_CONTENT_FIELD}, " +
+                $"SUM({Constants.ANSWERS_ANSWER_FIELD}) as {Constants.SCORE_FIELD} " +
+                $"{SQL.From} {Constants.ANSWERS_TABLE_NAME} A {SQL.Join} {Constants.QUESTIONS_TABLE_NAME} B {SQL.On} " +
+                $"A.{Constants.QUESTIONS_QUESTIONID_FIELD} = B.{Constants.QUESTIONS_QUESTIONID_FIELD} {SQL.Where} " +
+                    SQL.SingleCriteria(new SQL.LogicComparison()
+                    {
+                        LeftOperand = $"A.{Constants.QUEST_QUESTID_FIELD}",
+                        RightOperand = questId,
+                        Operator = SQL.LogicOperator.Equal
+                    }) +
+                $" {SQL.GroupBy} A.{Constants.QUESTIONS_QUESTIONID_FIELD}, B.{Constants.QUESTIONS_CONTENT_FIELD}"
+            );
+
+            try
+            {
+                var dataAccessor = DataAccess.Instance;
+                var answersTable = dataAccessor.GetDataTableFromQuery(queryBuilder.ToString());
+                var dataRows = answersTable?.Rows.Count > 0 ? answersTable.Rows : null;
+
+                var scores = new List<Score>();
+                if (dataRows == null)
+                {
+                    return new List<Score>();
+                }
+                else
+                {
+                    foreach (DataRow row in dataRows)
+                    {
+                        scores.Add(new Score()
+                        {
+                            QuestionId = int.Parse(row[Constants.QUESTIONS_QUESTIONID_FIELD].ToString()),
+                            Content = row[Constants.QUESTIONS_CONTENT_FIELD].ToString(),
+                            Result = int.Parse(row[Constants.SCORE_FIELD].ToString())
+                        });
+                    }
+                }
+
+                return scores;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         private static int GetNumberOfPendingForQuest(int questId)
         {
             var queryBuilder = new StringBuilder();

@@ -15,6 +15,7 @@
             <asp:Label ID="HeaderNieMaOdp" runat="server" Text="Niestety Nie Otrzymalismy jeszcze żadnych odpowiedzi na tę ankietę."></asp:Label>
             <asp:Label ID="HeaderLiczbaOdpOwner" runat="server" Text="<h4>Liczba wypełnionych ankiet:</h4>"></asp:Label>
                 <asp:Label ID="lblLiczbaWypelnionych" runat="server" Text=""></asp:Label>
+            <br />
             <asp:Label ID="HeaderWynikiOwner" runat="server" Text="<h4>Wyniki Ankiet:</h4>"></asp:Label>  
                 <asp:Repeater ID="rpt" runat="server">
                      <ItemTemplate>
@@ -22,10 +23,8 @@
                              <asp:HiddenField ID="hiddenId" runat="server" Value='<%# Eval("QuestionId") %>' />
                              <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("Content") %>' />
                              <br />
-                             <asp:Label ID="lblYes" CssClass="ml-5 font-italic" runat="server" Text="Tak" />
-                             <asp:Label ID="lblAnswerYes" CssClass="ml-5 font-italic" runat="server" Text='<%# Eval("Yes") %>' />
-                             <asp:Label ID="lblNo" CssClass="ml-5 font-italic" runat="server" Text="Nie" />
-                             <asp:Label ID="lblAnswerNo" CssClass="ml-5 font-italic" runat="server" Text='<%# Eval("No") %>' />
+                             <asp:Label ID="lblYes" CssClass="ml-5 font-italic" runat="server" Text="Liczba głosów: " />
+                             <asp:Label ID="Label1" CssClass="ml-5 font-italic" runat="server" Text='<%# Eval("Result") %>' />
                          </p>
                      </ItemTemplate>
                  </asp:Repeater>

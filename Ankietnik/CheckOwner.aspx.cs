@@ -24,6 +24,34 @@ namespace Ankietnik
                     var qstring = Request.QueryString["q"];
                     qint = int.Parse(qstring);
                     var completed = QuestionService.GetNumberOfCompletedForQuest(qint);
+                    if (completed == 0)
+                    {
+                        ((Label)HelperService.FindControlRecursive(Page, "HeaderNieMaOdp")).Visible = true;
+                        ((Label)HelperService.FindControlRecursive(Page, "HeaderLiczbaOdpOwner")).Visible = false;
+                        ((Label)HelperService.FindControlRecursive(Page, "lblLiczbaWypelnionych")).Visible = false;
+                        ((Label)HelperService.FindControlRecursive(Page, "HeaderWynikiOwner")).Visible = false;
+                        rpt.Visible = false;
+                    }
+                    else
+                    {
+                        ((Label)HelperService.FindControlRecursive(Page, "lblLiczbaWypelnionych")).Text = completed.ToString();
+                        ((Label)HelperService.FindControlRecursive(Page, "HeaderNieMaOdp")).Visible = false;
+
+                        var scores = QuestionService.GetScoresForQuest(qint);
+                        rpt.DataSource = scores;
+                        rpt.DataBind();
+                    }
+
+                    var pendingUsers = QuestionService.GetListOfUsersPendingForQuest(qint);
+                    if (pendingUsers == string.Empty)
+                    {
+                        ((Label)HelperService.FindControlRecursive(Page, "HeaderWszyscyWypelnili")).Visible = true;
+                    }
+                    else
+                    {
+                        ((Label)HelperService.FindControlRecursive(Page, "KtoNieWypelnil")).Text = pendingUsers;
+                        ((Label)HelperService.FindControlRecursive(Page, "HeaderWszyscyWypelnili")).Visible = false;
+                    }
                 }
                 else
                 {
