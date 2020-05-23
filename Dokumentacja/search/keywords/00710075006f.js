@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("quo",["Function"],[["Quotify",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.Quotify","CSharpClass:Ankietnik.SQL:Quotify"]]]]);

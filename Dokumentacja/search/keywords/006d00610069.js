@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("mai",["Class"],[["Main",,[["Ankietnik",,,,0,"File:Ankietnik/Main.aspx.cs:Ankietnik.Main","CSharpClass:Ankietnik.Main"]]],["MainOwner",,[["Ankietnik",,,,0,"File:Ankietnik/MainOwner.aspx.cs:Ankietnik.MainOwner","CSharpClass:Ankietnik.MainOwner"]]]]);

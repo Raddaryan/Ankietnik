@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("sta",["Variable"],[["Status",,[["Ankietnik.OperationResult",,,,0,"File:Ankietnik/DataModels.cs:Ankietnik.OperationResult.Status","CSharpClass:Ankietnik.OperationResult:Status"]]]]);

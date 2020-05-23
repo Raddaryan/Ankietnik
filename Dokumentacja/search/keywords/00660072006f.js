@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("fro",["Constant"],[["From",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.From","CSharpClass:Ankietnik.SQL:From"]]]]);

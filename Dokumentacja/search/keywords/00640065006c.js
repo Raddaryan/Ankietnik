@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("del",["Constant"],[["Delete",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.Delete","CSharpClass:Ankietnik.SQL:Delete"]]]]);

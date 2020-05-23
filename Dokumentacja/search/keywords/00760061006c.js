@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("val",["Constant","Function"],[["Values",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.Values","CSharpClass:Ankietnik.SQL:Values"]]],["ValuesList",,[["Ankietnik.SQL",,,,1,"File:Ankietnik/SQL.cs:Ankietnik.SQL.ValuesList","CSharpClass:Ankietnik.SQL:ValuesList"]]]]);

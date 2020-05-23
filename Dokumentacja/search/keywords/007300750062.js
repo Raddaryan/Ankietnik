@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("sub",["Function"],[["SubmitResponse",,[["Ankietnik.QuestionService",,,,0,"File:Ankietnik/QuestionService.cs:Ankietnik.QuestionService.SubmitResponse","CSharpClass:Ankietnik.QuestionService:SubmitResponse"]]]]);

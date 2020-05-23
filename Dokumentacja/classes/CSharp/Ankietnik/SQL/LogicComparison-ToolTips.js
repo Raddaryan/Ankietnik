@@ -1,0 +1,1 @@
+NDContentPage.OnToolTipsLoaded({47:"<div class=\"NDToolTip TEnumeration LCSharp\"><div id=\"NDPrototype47\" class=\"NDPrototype NoParameterForm\"><span class=\"SHKeyword\">internal enum</span> LogicOperator</div></div>"});

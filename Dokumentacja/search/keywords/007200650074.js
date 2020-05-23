@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("ret",["Variable"],[["RetypedTextBox",,[["Ankietnik.Register",,,,0,"File:Ankietnik/Register.aspx.designer.cs:Ankietnik.Register.RetypedTextBox","CSharpClass:Ankietnik.Register:RetypedTextBox"]]]]);

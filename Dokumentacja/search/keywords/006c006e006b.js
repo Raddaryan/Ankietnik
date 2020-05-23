@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("lnk",["Variable"],[["lnkHome",,[["Ankietnik.Site",,,,0,"File:Ankietnik/Site.Master.designer.cs:Ankietnik.Site.lnkHome","CSharpClass:Ankietnik.Site:lnkHome"]]]]);

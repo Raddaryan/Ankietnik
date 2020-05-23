@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("rig",["Variable"],[["RightOperand",,[["Ankietnik.SQL.LogicComparison",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.LogicComparison.RightOperand","CSharpClass:Ankietnik.SQL.LogicComparison:RightOperand"]]]]);

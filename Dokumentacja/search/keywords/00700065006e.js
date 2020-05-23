@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("pen",["Constant"],[["PENDING_TABLE_NAME",,[["Ankietnik.Constants",,,,0,"File:Ankietnik/Constants.cs:Ankietnik.Constants.PENDING_TABLE_NAME","CSharpClass:Ankietnik.Constants:PENDING_TABLE_NAME"]]]]);

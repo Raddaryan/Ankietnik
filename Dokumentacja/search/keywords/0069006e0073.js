@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("ins",["Constant","Property"],[["Insert",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.Insert","CSharpClass:Ankietnik.SQL:Insert"]]],["Instance",,[["Ankietnik.DataAccess",,,,1,"File:Ankietnik/DataAccess.cs:Ankietnik.DataAccess.Instance","CSharpClass:Ankietnik.DataAccess:Instance"]]]]);

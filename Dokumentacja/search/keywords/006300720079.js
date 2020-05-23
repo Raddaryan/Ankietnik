@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("cry",["Class"],[["CryptoService",,[["Ankietnik",,,,0,"File:Ankietnik/CryptoService.cs:Ankietnik.CryptoService","CSharpClass:Ankietnik.CryptoService"]]]]);

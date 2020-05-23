@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("gen",["Function"],[["GenerateSignature",,[["Ankietnik.CryptoService",,,,0,"File:Ankietnik/CryptoService.cs:Ankietnik.CryptoService.GenerateSignature","CSharpClass:Ankietnik.CryptoService:GenerateSignature"]]]]);

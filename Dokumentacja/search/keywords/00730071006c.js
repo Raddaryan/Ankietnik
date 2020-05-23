@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("sql",["Class"],[["SQL",,[["Ankietnik",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL","CSharpClass:Ankietnik.SQL"]]]]);

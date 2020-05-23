@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("not",["Constant"],[["Not",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.Not","CSharpClass:Ankietnik.SQL:Not"]]]]);

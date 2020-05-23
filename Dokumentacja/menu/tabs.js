@@ -1,0 +1,1 @@
+NDMenu.OnTabsLoaded([["File","Files","File:Ankietnik/","files.js"],["Class",["Classes","Ankietnik"],"CSharpClass:Ankietnik.","classes.js"]]);

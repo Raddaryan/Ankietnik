@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("lef",["Variable"],[["LeftOperand",,[["Ankietnik.SQL.LogicComparison",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.LogicComparison.LeftOperand","CSharpClass:Ankietnik.SQL.LogicComparison:LeftOperand"]]]]);

@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("cou",["Constant"],[["Count",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.Count","CSharpClass:Ankietnik.SQL:Count"]]]]);

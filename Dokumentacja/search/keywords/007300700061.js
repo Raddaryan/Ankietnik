@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("spa",["Constant"],[["Space",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.Space","CSharpClass:Ankietnik.SQL:Space"]]]]);

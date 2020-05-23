@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("own",["Variable"],[["OwnerId",,[["Ankietnik.Questionnaire",,,,0,"File:Ankietnik/DataModels.cs:Ankietnik.Questionnaire.OwnerId","CSharpClass:Ankietnik.Questionnaire:OwnerId"]]]]);

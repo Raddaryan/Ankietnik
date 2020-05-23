@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("whe",["Constant"],[["Where",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.Where","CSharpClass:Ankietnik.SQL:Where"]]]]);

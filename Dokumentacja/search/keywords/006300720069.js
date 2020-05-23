@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("cri",["Enumeration"],[["CriteriaConnector",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.CriteriaConnector","CSharpClass:Ankietnik.SQL:CriteriaConnector"]]]]);

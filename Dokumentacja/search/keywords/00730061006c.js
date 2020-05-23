@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("sal",["Variable"],[["Salt",,[["Ankietnik.EncryptedPassword",,,,0,"File:Ankietnik/DataModels.cs:Ankietnik.EncryptedPassword.Salt","CSharpClass:Ankietnik.EncryptedPassword:Salt"]]]]);

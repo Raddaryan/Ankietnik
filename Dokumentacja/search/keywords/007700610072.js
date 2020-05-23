@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("war",["Enumeration"],[["WarningType",,[["Ankietnik",,,,0,"File:Ankietnik/DataModels.cs:Ankietnik.WarningType"]]]]);

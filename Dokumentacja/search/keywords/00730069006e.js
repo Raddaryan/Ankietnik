@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("sin",["Function"],[["SingleCriteria",,[["Ankietnik.SQL",,,,0,"File:Ankietnik/SQL.cs:Ankietnik.SQL.SingleCriteria","CSharpClass:Ankietnik.SQL:SingleCriteria"]]]]);

@@ -1,0 +1,1 @@
+NDSearch.OnPrefixDataLoaded("_in",["Variable"],[["_instance",,[["Ankietnik.DataAccess",,,,0,"File:Ankietnik/DataAccess.cs:Ankietnik.DataAccess._instance","CSharpClass:Ankietnik.DataAccess:_instance"]]]]);
